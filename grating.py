@@ -1,5 +1,3 @@
-# previously psychopy_2b
-
 from psychopy import visual, core, event, logging
 import numpy as np
 import time
@@ -23,8 +21,12 @@ def write_file(output_name,list_name):
 			else:
 				writer.writerow([n])
 
-				
-			
+
+# These are the dimensions of the plate.
+# DO NOT CHANGE!
+width_plate = 620*1.52
+height_plate = 400*1.57
+
 white_duration=-1
 duration_max=3600
 switched=False
@@ -51,13 +53,15 @@ wheel  = np.asarray([[-1,0],[0,0],[-1/np.sqrt(2),1/np.sqrt(2)],[0,0],[0,1],[0,0]
 
 mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=True,screen=1)
 #plate=visual.ImageStim(win=mywin,image="well_plate.png",size=(568*0.85,380*0.85),pos=[0,0])
-plate=visual.Rect(win=mywin,size=(620*1.5,400*1.5),lineColor=[0,0,0],lineColorSpace="rgb255")
+plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255")
 white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+
+background=visual.Circle(win=mywin,radius=1, fillColor='red')
 
 #grating=visual.GratingStim(win=mywin,mask=None,size=(380*0.85,568*0.85),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 grating=visual.GratingStim(win=mywin,mask=None,size=(380*0.85,568*0.85),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
-shape = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='white', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0, 0), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+shape = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0, 0), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
 log_file=[]
 timer=core.Clock()
@@ -138,6 +142,7 @@ while True:
 clock = core.Clock()
 for frameN in range(200):
 	white.draw()
+	background.draw()
 	#grating.setPhase(0.1, '+')
 	#grating.draw()
 	#shape.setPhase(0.1,'+')
