@@ -108,9 +108,52 @@ class Application(Frame):
 	####################
 
 	row_num=row_num+4
-	self.well4_label = Label(master, text='Well 4',fg='white',bg='gray').grid(row=row_num,column=0)
-	self.well5_label = Label(master, text='Well 5',fg='white',bg='gray').grid(row=row_num,column=1)
-	self.well6_label = Label(master, text='Well 6',fg='white',bg='gray').grid(row=row_num,column=2)
+	self.well4_label = Label(master, text='Well 4',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
+
+	self.th4_label = Label(master, text='Thickness : ').grid(row=row_num+1,column=0)
+	self.th4_val = Entry(master).grid(row=row_num+1,column=1)
+	self.color4_label = Label(master, text='Color : ').grid(row=row_num+2,column=0)
+
+	self.color4_val = StringVar(master)
+	self.color4_val.set(self.COLOR_OPTIONS[0])
+
+	self.color4_menu = apply(OptionMenu, (master, self.color4_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=1,sticky="ew")
+
+	self.dr4_label = Label(master, text='Direction : ').grid(row=row_num+3,column=0)
+	self.dr4_val = StringVar(master)
+	self.dr4_val.set(self.DIR_OPTIONS[0])
+	self.dr4_menu = apply(OptionMenu, (master, self.dr4_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=1,sticky="ew")
+	####################
+
+	self.well5_label = Label(master, text='Well 5',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
+	self.th5_label = Label(master, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
+	self.th5_val = Entry(master).grid(row=row_num+1,column=3)
+	self.color5_label = Label(master, text='Color : ').grid(row=row_num+2,column=2,sticky=E)
+
+	self.color5_val = StringVar(master)
+	self.color5_val.set(self.COLOR_OPTIONS[0])
+	self.color5_menu = apply(OptionMenu, (master, self.color5_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=3,sticky="ew")
+
+	self.dr5_label = Label(master, text='Direction : ').grid(row=row_num+3,column=2,sticky=E)
+	self.dr5_val = StringVar(master)
+	self.dr5_val.set(self.DIR_OPTIONS[0])
+	self.dr5_menu = apply(OptionMenu, (master, self.dr5_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=3,sticky="ew")
+	####################
+
+	self.well6_label = Label(master, text='Well 6',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
+	self.th6_label = Label(master, text='Thickness : ').grid(row=row_num+1,column=4,sticky=E)
+	self.th6_val = Entry(master).grid(row=row_num+1,column=5)
+	self.color6_label = Label(master, text='Color : ').grid(row=row_num+2,column=4,sticky=E)
+
+	self.color6_val = StringVar(master)
+	self.color6_val.set(self.COLOR_OPTIONS[0])
+	self.color6_menu = apply(OptionMenu, (master, self.color6_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=5,sticky="ew")
+
+	self.dr6_label = Label(master, text='Direction : ').grid(row=row_num+3,column=4,sticky=E)
+	self.dr6_val = StringVar(master)
+	self.dr6_val.set(self.DIR_OPTIONS[0])
+	self.dr6_menu = apply(OptionMenu, (master, self.dr6_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=5,sticky="ew")
+	####################
 
         self.QUIT = Button(self)
         self.QUIT1 = Button(self)
@@ -121,17 +164,6 @@ class Application(Frame):
         self.QUIT["fg"]   = "red"
         self.QUIT["command"] =  self.quit
 
-        #self.QUIT.pack({"side": "left"})
-
-        #self.QUIT1.pack({"side": "left"})
-
-        #self.QUIT2.pack({"side": "left"})
-
-        #self.QUIT3.pack({"side": "left"})
-
-        self.hi_there = Button(self)
-        self.hi_there["text"] = "Hello",
-        self.hi_there["command"] = self.say_hi
 
         #self.hi_there.pack({"side": "left"})
 

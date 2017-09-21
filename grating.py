@@ -27,6 +27,9 @@ def write_file(output_name,list_name):
 width_plate = 620*1.52
 height_plate = 400*1.57
 
+grating_width = 380*0.85
+grating_height = 568*0.85
+
 white_duration=-1
 duration_max=3600
 switched=False
@@ -59,9 +62,20 @@ white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0
 background=visual.Circle(win=mywin,radius=1, fillColor='red')
 
 #grating=visual.GratingStim(win=mywin,mask=None,size=(380*0.85,568*0.85),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
-grating=visual.GratingStim(win=mywin,mask=None,size=(380*0.85,568*0.85),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
+grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
-shape = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0, 0), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+shape1 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+shape2 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+shape3 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+shape4 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+shape5 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+shape6 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
 log_file=[]
 timer=core.Clock()
@@ -142,12 +156,24 @@ while True:
 clock = core.Clock()
 for frameN in range(200):
 	white.draw()
+	plate.draw()
 	background.draw()
 	#grating.setPhase(0.1, '+')
 	#grating.draw()
 	#shape.setPhase(0.1,'+')
-	shape.setOri(2,operation='+')
-	shape.draw()
+	shape1.setOri(2,operation='+')
+	shape1.draw()
+
+	shape2.setOri(5,operation='+')
+	shape2.draw()
+	
+	shape3.setOri(2,operation='-')
+	shape3.draw()
+
+	shape4.draw()
+	shape5.draw()
+	shape6.draw()
+
 	mywin.logOnFlip(level=logging.EXP, msg='sent on actual flip')
 	mywin.flip()
 
