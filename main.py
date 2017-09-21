@@ -26,10 +26,10 @@ class Application(Frame):
 	self.dir1_minus = Checkbutton(master,text='-',variable=_dir1MinusSet).grid(row=1,column=2)
 	
 	self.duration1_label = Label(master, text='Duration (in frames) : ').grid(row=2,column=0)
-	self.duration1_val = Entry(master, text='0 ').grid(row=2,column=1)
+	self.duration1_val = Entry(master).grid(row=2,column=1)
 
 	self.speed1_label = Label(master, text='Speed : ').grid(row=3,column=0)
-	self.speed1_val = Entry(master, text='0 ').grid(row=3,column=1)
+	self.speed1_val = Entry(master).grid(row=3,column=1)
 
 	'''
 	Layout for the second stimulus: Direction, duration, speed
@@ -42,10 +42,10 @@ class Application(Frame):
 	self.dir2_minus = Checkbutton(master,text='-',variable=_dir2MinusSet).grid(row=5,column=2)
 	
 	self.duration2_label = Label(master, text='Duration (in frames) : ').grid(row=6,column=0)
-	self.duration2_val = Entry(master, text='0 ').grid(row=6,column=1)
+	self.duration2_val = Entry(master).grid(row=6,column=1)
 
 	self.speed2_label = Label(master, text='Speed : ').grid(row=7,column=0)
-	self.speed2_val = Entry(master, text='0 ').grid(row=7,column=1)
+	self.speed2_val = Entry(master).grid(row=7,column=1)
 
 
 	'''
@@ -53,18 +53,64 @@ class Application(Frame):
 	Radial Stimuli
 	**************
 	'''
+	self.COLOR_OPTIONS = ["White","Gray","Red","Green","Blue","Yellow"]
+	self.DIR_OPTIONS = ["Clockwise","Anti-Clockwise"]
+
 	row_num = 9
 	# set the radial stimuli label
 	self.heading2 = Label(master, text='Radial Stimuli',fg='red',bg='black').grid(row=8,column=0,columnspan=3)
+	
+	####################
+	self.well1_label = Label(master, text='Well 1',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
+	self.th1_label = Label(master, text='Thickness : ').grid(row=row_num+1,column=0)
+	self.th1_val = Entry(master).grid(row=row_num+1,column=1)
+	self.color1_label = Label(master, text='Color : ').grid(row=row_num+2,column=0)
 
-	self.well1_label = Label(master, text='Well 1',fg='white',bg='gray').grid(row=row_num,column=0)
-	self.well2_label = Label(master, text='Well 2',fg='white',bg='gray').grid(row=row_num,column=1)
-	self.well3_label = Label(master, text='Well 3',fg='white',bg='gray').grid(row=row_num,column=2)
+	self.color1_val = StringVar(master)
+	self.color1_val.set(self.COLOR_OPTIONS[0])
+	self.color1_menu = apply(OptionMenu, (master, self.color1_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=1,sticky="ew")
 
+	self.dr1_label = Label(master, text='Direction : ').grid(row=row_num+3,column=0)
+	self.dr1_val = StringVar(master)
+	self.dr1_val.set(self.DIR_OPTIONS[0])
+	self.dr1_menu = apply(OptionMenu, (master, self.dr1_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=1,sticky="ew")
+	
+	####################
+	self.well2_label = Label(master, text='Well 2',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
+	self.th2_label = Label(master, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
+	self.th2_val = Entry(master).grid(row=row_num+1,column=3)
+	self.color2_label = Label(master, text='Color : ').grid(row=row_num+2,column=2,sticky=E)
 
-	self.well4_label = Label(master, text='Well 4',fg='white',bg='gray').grid(row=row_num+1,column=0)
-	self.well5_label = Label(master, text='Well 5',fg='white',bg='gray').grid(row=row_num+1,column=1)
-	self.well6_label = Label(master, text='Well 6',fg='white',bg='gray').grid(row=row_num+1,column=2)
+	self.color2_val = StringVar(master)
+	self.color2_val.set(self.COLOR_OPTIONS[0])
+	self.color2_menu = apply(OptionMenu, (master, self.color2_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=3,sticky="ew")
+
+	self.dr2_label = Label(master, text='Direction : ').grid(row=row_num+3,column=2,sticky=E)
+	self.dr2_val = StringVar(master)
+	self.dr2_val.set(self.DIR_OPTIONS[0])
+	self.dr2_menu = apply(OptionMenu, (master, self.dr2_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=3,sticky="ew")
+	####################
+
+	self.well3_label = Label(master, text='Well 3',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
+
+	self.th3_label = Label(master, text='Thickness : ').grid(row=row_num+1,column=4,sticky=E)
+	self.th3_val = Entry(master).grid(row=row_num+1,column=5)
+	self.color3_label = Label(master, text='Color : ').grid(row=row_num+2,column=4,sticky=E)
+
+	self.color3_val = StringVar(master)
+	self.color3_val.set(self.COLOR_OPTIONS[0])
+	self.color3_menu = apply(OptionMenu, (master, self.color3_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=5,sticky="ew")
+
+	self.dr3_label = Label(master, text='Direction : ').grid(row=row_num+3,column=4,sticky=E)
+	self.dr3_val = StringVar(master)
+	self.dr3_val.set(self.DIR_OPTIONS[0])
+	self.dr3_menu = apply(OptionMenu, (master, self.dr3_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=5,sticky="ew")
+	####################
+
+	row_num=row_num+4
+	self.well4_label = Label(master, text='Well 4',fg='white',bg='gray').grid(row=row_num,column=0)
+	self.well5_label = Label(master, text='Well 5',fg='white',bg='gray').grid(row=row_num,column=1)
+	self.well6_label = Label(master, text='Well 6',fg='white',bg='gray').grid(row=row_num,column=2)
 
         self.QUIT = Button(self)
         self.QUIT1 = Button(self)
