@@ -1,8 +1,6 @@
 from Tkinter import *
 
 class Application(Frame):
-    def say_hi(self):
-        print "hi there, everyone!"
 
     def createWidgets(self,master):
 
@@ -82,18 +80,25 @@ class Application(Frame):
 	'''
 	Layout for the first stimulus: Direction, duration, speed
 	'''
-	self.direction1_label = Label(self.heading3, text='Initial Direction : ').grid(row=1,column=3)
+	self.direction1_label = Label(self.heading3, text='Initial Direction : ')
+	self.direction1_label.grid(row=1,column=3)
 
 	_dir1PlusSet = IntVar()
 	_dir1MinusSet = IntVar()
-	self.dir1_plus = Checkbutton(self.heading3,text='+',variable=_dir1PlusSet).grid(row=1,column=4)
-	self.dir1_minus = Checkbutton(self.heading3,text='-',variable=_dir1MinusSet).grid(row=1,column=5)
+	self.dir1_plus = Checkbutton(self.heading3,text='+',variable=_dir1PlusSet)
+	self.dir1_plus.grid(row=1,column=4)
+	self.dir1_minus = Checkbutton(self.heading3,text='-',variable=_dir1MinusSet)
+	self.dir1_minus.grid(row=1,column=5)
 	
-	self.duration1_label = Label(self.heading3, text='Duration (in frames) : ').grid(row=2,column=3)
-	self.duration1_val = Entry(self.heading3).grid(row=2,column=4)
+	self.duration1_label = Label(self.heading3, text='Duration (in frames) : ')
+	self.duration1_label.grid(row=2,column=3)
+	self.duration1_val = Entry(self.heading3)
+	self.duration1_val.grid(row=2,column=4)
 
-	self.speed1_label = Label(self.heading3, text='Speed : ').grid(row=3,column=3)
-	self.speed1_val = Entry(self.heading3).grid(row=3,column=4)
+	self.speed1_label = Label(self.heading3, text='Speed : ')
+	self.speed1_label.grid(row=3,column=3)
+	self.speed1_val = Entry(self.heading3)
+	self.speed1_val.grid(row=3,column=4)
 
 	'''
 	Layout for the second stimulus: Direction, duration, speed
@@ -223,16 +228,10 @@ class Application(Frame):
 	self.dr6_menu = apply(OptionMenu, (self.heading2, self.dr6_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=5,sticky="ew")
 	####################
 
-        self.QUIT = Button(self)
-        self.QUIT1 = Button(self)
-        self.QUIT2 = Button(self)
-        self.QUIT3 = Button(self)
-
-        self.QUIT["text"] = "QUIT"
-        self.QUIT["fg"]   = "red"
-        self.QUIT["command"] =  self.quit
-
-	self.trigger = Button(self)
+	self.qlabel = Label(master,fg='red',bd=10)
+	self.qlabel.grid(row=row_num+4,column=0,columnspan=4,sticky='ew')
+        self.quit = Button(self.qlabel,text='Quit',command=self.quit)
+	self.quit.grid(row=row_num+4,column=0,sticky=E)
 
     def toggleGroup(self,group,value):
 	if value == 1:
