@@ -61,7 +61,6 @@ white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0
 
 background=visual.Circle(win=mywin,radius=1, fillColor='red')
 
-#grating=visual.GratingStim(win=mywin,mask=None,size=(380*0.85,568*0.85),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
 
@@ -80,6 +79,7 @@ shape6 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', line
 log_file=[]
 timer=core.Clock()
 
+'''
 # display white
 while True: 
 	if white_duration<0 or (white_duration>=0 and timer.getTime()>=white_duration):
@@ -90,6 +90,7 @@ while True:
 	if event.waitKeys(0.1)==["escape"] or (white_duration>=0 and timer.getTime()>=white_duration): 
 		break	
 	event.clearEvents()
+'''
 
 '''
 Link to (and initiate) capture from the camera and pause for a few (3) seconds before
@@ -153,6 +154,7 @@ while True:
 	event.clearEvents()
 '''
 
+'''
 clock = core.Clock()
 for frameN in range(200):
 	white.draw()
@@ -180,5 +182,27 @@ for frameN in range(200):
 
 mywin.close()
 core.quit()
+'''
 
+def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2):
+	print(t1,speed1,dir1,t2,speed2,dir2)
+    	# display white
+	while True: 
+		white.draw()
+		plate.draw()
+		mywin.flip()
+		if event.waitKeys(0.1)==["escape"]:
+			break	
+	event.clearEvents()
 
+	t=0
+	while (t < (t1+t2)):
+		white.draw()
+		if (t < t1):
+			grating.setPhase(speed1,dir1)
+		else:
+			grating.setPhase(speed2,dir2)
+		grating.draw()
+		mywin.flip()
+		t=t+1
+	mywin.close()

@@ -1,4 +1,5 @@
 from Tkinter import *
+from grating import *
 
 class Application(Frame):
 
@@ -22,12 +23,12 @@ class Application(Frame):
 	self.direction1_label = Label(self.heading1, text='Initial Direction : ')
 	self.direction1_label.grid(row=1,column=0)
 
-	_dir1PlusSet = IntVar()
-	_dir1MinusSet = IntVar()
-	self.dir1_plus = Checkbutton(self.heading1,text='+',variable=_dir1PlusSet)
+	self._dir1PlusSet = IntVar()
+	self._dir1MinusSet = IntVar()
+	self.dir1_plus = Checkbutton(self.heading1,text='+',variable=self._dir1PlusSet)
 	self.dir1_plus.grid(row=1,column=1)
 
-	self.dir1_minus = Checkbutton(self.heading1,text='-',variable=_dir1MinusSet)
+	self.dir1_minus = Checkbutton(self.heading1,text='-',variable=self._dir1MinusSet)
 	self.dir1_minus.grid(row=1,column=2)
 	
 	self.duration1_label = Label(self.heading1, text='Duration (in frames) : ')
@@ -47,11 +48,11 @@ class Application(Frame):
 	self.direction2_label = Label(self.heading1, text='Direction shift: ')
 	self.direction2_label.grid(row=5,column=0)
 
-	_dir2PlusSet = IntVar()
-	_dir2MinusSet = IntVar()
-	self.dir2_plus = Checkbutton(self.heading1,text='+',variable=_dir2PlusSet)
+	self._dir2PlusSet = IntVar()
+	self._dir2MinusSet = IntVar()
+	self.dir2_plus = Checkbutton(self.heading1,text='+',variable=self._dir2PlusSet)
 	self.dir2_plus.grid(row=5,column=1)
-	self.dir2_minus = Checkbutton(self.heading1,text='-',variable=_dir2MinusSet)
+	self.dir2_minus = Checkbutton(self.heading1,text='-',variable=self._dir2MinusSet)
 	self.dir2_minus.grid(row=5,column=2)
 	
 	self.duration2_label = Label(self.heading1, text='Duration (in frames) : ')
@@ -263,7 +264,7 @@ class Application(Frame):
 
 	self.startlabel = Label(master,fg='red',bd=10)
 	self.startlabel.grid(row=row_num+4,column=0,columnspan=4,sticky='ew')
-        self.start = Button(self.startlabel,text='Start the experiment!')
+        self.start = Button(self.startlabel,text='Start the experiment!',command=self.runExp)
 	self.start.grid(row=row_num+4,column=0,sticky=E)
 
     def toggleGroup(self,group,value):
@@ -286,6 +287,32 @@ class Application(Frame):
     def selectRad(self):
 	self.toggleGroup(self.heading1,self.radVar.get())
 	self.toggleGroup(self.heading3,self.radVar.get())
+
+    def runExp(self):
+    	'''
+	get all the variables on the panel and call the function to display the stimuli
+	'''
+	# first check what kind of stimulus is wanted
+	if self.hgvar.get() == 1:
+	    dir1 = ''
+	    dir2 = ''
+	    if (self._dir1PlusSet.get() == 1):
+		    dir1=dir1+'+'
+	    else:
+		    dir1=dir1+'-'
+
+	    if (self._dir2PlusSet.get() == 1):
+		    dir2=dir2+'+'
+	    else:
+		    dir2=dir2+'-'
+	    displayHorizontalGrating(float(self.duration1_val.get()),float(self.speed1_val.get()),dir1,float(self.duration2_val.get()),float(self.speed2_val.get()),dir2)
+
+	elif self.vgvar.get() == 1:
+	    print('hi')
+	elif self.radVar.get() == 1:
+	    print('hi')
+	else:
+	    print('Please select at least one option!')
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
