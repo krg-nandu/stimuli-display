@@ -294,6 +294,7 @@ class Application(Frame):
 	'''
 	# first check what kind of stimulus is wanted
 	if self.hgvar.get() == 1:
+	    # HORIZONTAL GRATING
 	    dir1 = ''
 	    dir2 = ''
 	    if (self._dir1PlusSet.get() == 1):
@@ -308,6 +309,7 @@ class Application(Frame):
 	    displayHorizontalGrating(float(self.duration1_val.get()),float(self.speed1_val.get()),dir1,float(self.duration2_val.get()),float(self.speed2_val.get()),dir2)
 
 	elif self.vgvar.get() == 1:
+	    # VERTICAL GRATING
 	    dir1 = ''
 	    dir2 = ''
 	    if (self._dir1bPlusSet.get() == 1):
@@ -321,7 +323,12 @@ class Application(Frame):
 		    dir2=dir2+'-'
 	    displayVerticalGrating(float(self.duration1b_val.get()),float(self.speed1b_val.get()),dir1,float(self.duration2b_val.get()),float(self.speed2b_val.get()),dir2)
 	elif self.radVar.get() == 1:
-	    displayCircularStimuli()
+	    # RADIAL STIMULI
+	    directions = [self.dr1_val.get(),self.dr2_val.get(),self.dr3_val.get(),self.dr4_val.get(),self.dr5_val.get(),self.dr6_val.get()]
+	    colors = [self.color1_val.get(), self.color2_val.get(),self.color3_val.get(),self.color4_val.get(),self.color5_val.get(),self.color6_val.get()]
+	    thicknesses = [float(self.th1_val.get()),float(self.th2_val.get()),float(self.th3_val.get()),float(self.th4_val.get()),float(self.th5_val.get()),float(self.th6_val.get())]
+
+	    displayCircularStimuli(directions,colors,thicknesses)
 	else:
 	    print('Please select at least one option!')
 

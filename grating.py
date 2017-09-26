@@ -158,25 +158,31 @@ mywin.close()
 core.quit()
 '''
 
-def displayCircularStimuli(t1,speed1,dir1,t2,speed2,dir2):
-	
-	shape1 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+def displayCircularStimuli(directions,colors,thicknesses):
+	ops = []
+	for d in directions:
+		if d == 'Clockwise':
+			ops.append('+')
+		else:
+			ops.append('-')	
 
-	shape2 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape1 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[0], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape3 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape2 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[1], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape4 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape3 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[2], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape5 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape4 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[3], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape6 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape5 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[4], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape6 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[5], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
 
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
 	mywin.winHandle.activate()
-	print(t1,speed1,dir1,t2,speed2,dir2)
+
     	# display white
 	while True: 
 		white.draw()
@@ -186,23 +192,39 @@ def displayCircularStimuli(t1,speed1,dir1,t2,speed2,dir2):
 			break	
 	event.clearEvents()
 
-	t=0
-	while (t < (t1+t2)):
+	clock = core.Clock()
+	for frameN in range(200):
 		white.draw()
-		if (t < t1):
-			grating.setPhase(speed1,dir1)
-		else:
-			grating.setPhase(speed2,dir2)
-		grating.draw()
+		plate.draw()
+
+		shape1.setOri(2,operation=ops[0])
+		shape1.draw()
+
+		shape2.setOri(5,operation=ops[1])
+		shape2.draw()
+	
+		shape3.setOri(2,operation=ops[2])
+		shape3.draw()
+
+		shape4.setOri(2,operation=ops[3])
+		shape4.draw()
+
+		shape5.setOri(2,operation=ops[4])
+		shape5.draw()
+
+		shape6.setOri(2,operation=ops[5])
+		shape6.draw()
+	
+		mywin.logOnFlip(level=logging.EXP, msg='sent on actual flip')
 		mywin.flip()
-		t=t+1
 	mywin.close()
+	core.quit()
 
 def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
 	mywin.winHandle.activate()
-	print(t1,speed1,dir1,t2,speed2,dir2)
+
     	# display white
 	while True: 
 		white.draw()
