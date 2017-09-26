@@ -80,42 +80,50 @@ class Application(Frame):
 	'''
 	Layout for the first stimulus: Direction, duration, speed
 	'''
-	self.direction1_label = Label(self.heading3, text='Initial Direction : ')
-	self.direction1_label.grid(row=1,column=3)
+	self.direction1b_label = Label(self.heading3, text='Initial Direction : ')
+	self.direction1b_label.grid(row=1,column=3)
 
-	_dir1PlusSet = IntVar()
-	_dir1MinusSet = IntVar()
-	self.dir1_plus = Checkbutton(self.heading3,text='+',variable=_dir1PlusSet)
-	self.dir1_plus.grid(row=1,column=4)
-	self.dir1_minus = Checkbutton(self.heading3,text='-',variable=_dir1MinusSet)
-	self.dir1_minus.grid(row=1,column=5)
+	_dir1bPlusSet = IntVar()
+	_dir1bMinusSet = IntVar()
+	self.dir1b_plus = Checkbutton(self.heading3,text='+',variable=_dir1bPlusSet)
+	self.dir1b_plus.grid(row=1,column=4)
+	self.dir1b_minus = Checkbutton(self.heading3,text='-',variable=_dir1bMinusSet)
+	self.dir1b_minus.grid(row=1,column=5)
 	
-	self.duration1_label = Label(self.heading3, text='Duration (in frames) : ')
-	self.duration1_label.grid(row=2,column=3)
-	self.duration1_val = Entry(self.heading3)
-	self.duration1_val.grid(row=2,column=4)
+	self.duration1b_label = Label(self.heading3, text='Duration (in frames) : ')
+	self.duration1b_label.grid(row=2,column=3)
+	self.duration1b_val = Entry(self.heading3)
+	self.duration1b_val.grid(row=2,column=4)
 
-	self.speed1_label = Label(self.heading3, text='Speed : ')
-	self.speed1_label.grid(row=3,column=3)
-	self.speed1_val = Entry(self.heading3)
-	self.speed1_val.grid(row=3,column=4)
+	self.speed1b_label = Label(self.heading3, text='Speed : ')
+	self.speed1b_label.grid(row=3,column=3)
+	self.speed1b_val = Entry(self.heading3)
+	self.speed1b_val.grid(row=3,column=4)
 
 	'''
 	Layout for the second stimulus: Direction, duration, speed
 	'''
-	self.direction2_label = Label(self.heading3, text='Direction shift: ').grid(row=5,column=3)
+	self.direction2b_label = Label(self.heading3, text='Direction shift: ')
+	self.direction2b_label.grid(row=5,column=3)
 
-	_dir2PlusSet = IntVar()
-	_dir2MinusSet = IntVar()
-	self.dir2_plus = Checkbutton(self.heading3,text='+',variable=_dir2PlusSet).grid(row=5,column=4)
-	self.dir2_minus = Checkbutton(self.heading3,text='-',variable=_dir2MinusSet).grid(row=5,column=5)
+	_dir2bPlusSet = IntVar()
+	_dir2bMinusSet = IntVar()
+	self.dir2b_plus = Checkbutton(self.heading3,text='+',variable=_dir2bPlusSet)
+	self.dir2b_plus.grid(row=5,column=4)
+
+	self.dir2b_minus = Checkbutton(self.heading3,text='-',variable=_dir2bMinusSet)
+	self.dir2b_minus.grid(row=5,column=5)
 	
-	self.duration2_label = Label(self.heading3, text='Duration (in frames) : ').grid(row=6,column=3)
-	self.duration2_val = Entry(self.heading3).grid(row=6,column=4)
+	self.duration2b_label = Label(self.heading3, text='Duration (in frames) : ')
+	self.duration2b_label.grid(row=6,column=3)
 
-	self.speed2_label = Label(self.heading3, text='Speed : ').grid(row=7,column=3)
-	self.speed2_val = Entry(self.heading3).grid(row=7,column=4)
+	self.duration2b_val = Entry(self.heading3)
+	self.duration2b_val.grid(row=6,column=4)
 
+	self.speed2b_label = Label(self.heading3, text='Speed : ')
+	self.speed2b_label.grid(row=7,column=3)
+	self.speed2b_val = Entry(self.heading3)
+	self.speed2b_val.grid(row=7,column=4)
 
 	'''
 	**************
@@ -136,32 +144,38 @@ class Application(Frame):
 	####################
 	self.well1_label = Label(self.heading2, text='Well 1',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
 	self.th1_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
-	self.th1_val = Entry(self.heading2).grid(row=row_num+1,column=1)
+	self.th1_val = Entry(self.heading2)
+	self.th1_val.grid(row=row_num+1,column=1)
 	self.color1_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=0)
 
 	self.color1_val = StringVar(self.heading2)
 	self.color1_val.set(self.COLOR_OPTIONS[0])
-	self.color1_menu = apply(OptionMenu, (self.heading2, self.color1_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=1,sticky="ew")
+	self.color1_menu = apply(OptionMenu, (self.heading2, self.color1_val) + tuple(self.COLOR_OPTIONS))
+	self.color1_menu.grid(row=row_num+2,column=1,sticky="ew")
 
 	self.dr1_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=0)
 	self.dr1_val = StringVar(self.heading2)
 	self.dr1_val.set(self.DIR_OPTIONS[0])
-	self.dr1_menu = apply(OptionMenu, (self.heading2, self.dr1_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=1,sticky="ew")
+	self.dr1_menu = apply(OptionMenu, (self.heading2, self.dr1_val) + tuple(self.DIR_OPTIONS))
+	self.dr1_menu.grid(row=row_num+3,column=1,sticky="ew")
 	
 	####################
 	self.well2_label = Label(self.heading2, text='Well 2',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
 	self.th2_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
-	self.th2_val = Entry(self.heading2).grid(row=row_num+1,column=3)
+	self.th2_val = Entry(self.heading2)
+	self.th2_val.grid(row=row_num+1,column=3)
 	self.color2_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=2,sticky=E)
 
 	self.color2_val = StringVar(self.heading2)
 	self.color2_val.set(self.COLOR_OPTIONS[0])
-	self.color2_menu = apply(OptionMenu, (self.heading2, self.color2_val) + tuple(self.COLOR_OPTIONS)).grid(row=row_num+2,column=3,sticky="ew")
+	self.color2_menu = apply(OptionMenu, (self.heading2, self.color2_val) + tuple(self.COLOR_OPTIONS))
+	self.color2_menu.grid(row=row_num+2,column=3,sticky="ew")
 
 	self.dr2_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=2,sticky=E)
 	self.dr2_val = StringVar(self.heading2)
 	self.dr2_val.set(self.DIR_OPTIONS[0])
-	self.dr2_menu = apply(OptionMenu, (self.heading2, self.dr2_val) + tuple(self.DIR_OPTIONS)).grid(row=row_num+3,column=3,sticky="ew")
+	self.dr2_menu = apply(OptionMenu, (self.heading2, self.dr2_val) + tuple(self.DIR_OPTIONS))
+	self.dr2_menu.grid(row=row_num+3,column=3,sticky="ew")
 	####################
 
 	self.well3_label = Label(self.heading2, text='Well 3',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
@@ -229,9 +243,16 @@ class Application(Frame):
 	####################
 
 	self.qlabel = Label(master,fg='red',bd=10)
-	self.qlabel.grid(row=row_num+4,column=0,columnspan=4,sticky='ew')
-        self.quit = Button(self.qlabel,text='Quit',command=self.quit)
-	self.quit.grid(row=row_num+4,column=0,sticky=E)
+	self.qlabel.grid(row=row_num+4,column=5,columnspan=4,sticky='ew')
+        self.quit = Button(self.qlabel,text='Exit the program!',command=self.quit)
+	self.quit.grid(row=row_num+4,column=5,sticky=E)
+
+	####################
+
+	self.startlabel = Label(master,fg='red',bd=10)
+	self.startlabel.grid(row=row_num+4,column=0,columnspan=4,sticky='ew')
+        self.start = Button(self.startlabel,text='Start the experiment!')
+	self.start.grid(row=row_num+4,column=0,sticky=E)
 
     def toggleGroup(self,group,value):
 	if value == 1:
@@ -256,7 +277,6 @@ class Application(Frame):
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
-        #self.pack()
         self.createWidgets(master)
 
 root = Tk()
