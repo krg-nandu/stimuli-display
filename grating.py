@@ -55,42 +55,16 @@ scalingFactor = 50.0
 wheel  = np.asarray([[-1,0],[0,0],[-1/np.sqrt(2),1/np.sqrt(2)],[0,0],[0,1],[0,0],[1/np.sqrt(2),1/np.sqrt(2)],[0,0],[1,0],[0,0],[1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[0,-1],[0,0],[-1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[-1,0]])
 
 mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=True,screen=1)
-#plate=visual.ImageStim(win=mywin,image="well_plate.png",size=(568*0.85,380*0.85),pos=[0,0])
 plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255")
 white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
 
-background=visual.Circle(win=mywin,radius=1, fillColor='red')
+#background=visual.Circle(win=mywin,radius=1, fillColor='red')
 
-grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
-
-shape1 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
-
-shape2 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
-
-shape3 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
-
-shape4 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
-
-shape5 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
-
-shape6 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
 log_file=[]
 timer=core.Clock()
 
-'''
-# display white
-while True: 
-	if white_duration<0 or (white_duration>=0 and timer.getTime()>=white_duration):
-		white.draw()
-		plate.draw()
-	
-	mywin.flip()
-	if event.waitKeys(0.1)==["escape"] or (white_duration>=0 and timer.getTime()>=white_duration): 
-		break	
-	event.clearEvents()
-'''
 
 '''
 Link to (and initiate) capture from the camera and pause for a few (3) seconds before
@@ -184,7 +158,24 @@ mywin.close()
 core.quit()
 '''
 
-def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2):
+def displayCircularStimuli(t1,speed1,dir1,t2,speed2,dir2):
+	
+	shape1 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape2 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape3 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape4 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape5 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape6 = visual.ShapeStim(mywin,units='', lineWidth=1.5, lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+
+	mywin.winHandle.maximize()
+	mywin.winHandle.set_fullscreen(True) 
+	mywin.winHandle.activate()
 	print(t1,speed1,dir1,t2,speed2,dir2)
     	# display white
 	while True: 
@@ -206,3 +197,37 @@ def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2):
 		mywin.flip()
 		t=t+1
 	mywin.close()
+
+def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
+	mywin.winHandle.maximize()
+	mywin.winHandle.set_fullscreen(True) 
+	mywin.winHandle.activate()
+	print(t1,speed1,dir1,t2,speed2,dir2)
+    	# display white
+	while True: 
+		white.draw()
+		plate.draw()
+		mywin.flip()
+		if event.waitKeys(0.1)==["escape"]:
+			break	
+	event.clearEvents()
+
+	t=0
+	while (t < (t1+t2)):
+		white.draw()
+		if (t < t1):
+			grating.setPhase(speed1,dir1)
+		else:
+			grating.setPhase(speed2,dir2)
+		grating.draw()
+		mywin.flip()
+		t=t+1
+	mywin.close()
+
+def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2):
+	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
+	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
+
+def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2):
+	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
+	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)

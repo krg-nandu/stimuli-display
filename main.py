@@ -84,11 +84,11 @@ class Application(Frame):
 	self.direction1b_label = Label(self.heading3, text='Initial Direction : ')
 	self.direction1b_label.grid(row=1,column=3)
 
-	_dir1bPlusSet = IntVar()
-	_dir1bMinusSet = IntVar()
-	self.dir1b_plus = Checkbutton(self.heading3,text='+',variable=_dir1bPlusSet)
+	self._dir1bPlusSet = IntVar()
+	self._dir1bMinusSet = IntVar()
+	self.dir1b_plus = Checkbutton(self.heading3,text='+',variable=self._dir1bPlusSet)
 	self.dir1b_plus.grid(row=1,column=4)
-	self.dir1b_minus = Checkbutton(self.heading3,text='-',variable=_dir1bMinusSet)
+	self.dir1b_minus = Checkbutton(self.heading3,text='-',variable=self._dir1bMinusSet)
 	self.dir1b_minus.grid(row=1,column=5)
 	
 	self.duration1b_label = Label(self.heading3, text='Duration (in frames) : ')
@@ -107,12 +107,12 @@ class Application(Frame):
 	self.direction2b_label = Label(self.heading3, text='Direction shift: ')
 	self.direction2b_label.grid(row=5,column=3)
 
-	_dir2bPlusSet = IntVar()
-	_dir2bMinusSet = IntVar()
-	self.dir2b_plus = Checkbutton(self.heading3,text='+',variable=_dir2bPlusSet)
+	self._dir2bPlusSet = IntVar()
+	self._dir2bMinusSet = IntVar()
+	self.dir2b_plus = Checkbutton(self.heading3,text='+',variable=self._dir2bPlusSet)
 	self.dir2b_plus.grid(row=5,column=4)
 
-	self.dir2b_minus = Checkbutton(self.heading3,text='-',variable=_dir2bMinusSet)
+	self.dir2b_minus = Checkbutton(self.heading3,text='-',variable=self._dir2bMinusSet)
 	self.dir2b_minus.grid(row=5,column=5)
 	
 	self.duration2b_label = Label(self.heading3, text='Duration (in frames) : ')
@@ -308,9 +308,20 @@ class Application(Frame):
 	    displayHorizontalGrating(float(self.duration1_val.get()),float(self.speed1_val.get()),dir1,float(self.duration2_val.get()),float(self.speed2_val.get()),dir2)
 
 	elif self.vgvar.get() == 1:
-	    print('hi')
+	    dir1 = ''
+	    dir2 = ''
+	    if (self._dir1bPlusSet.get() == 1):
+		    dir1=dir1+'+'
+	    else:
+		    dir1=dir1+'-'
+
+	    if (self._dir2bPlusSet.get() == 1):
+		    dir2=dir2+'+'
+	    else:
+		    dir2=dir2+'-'
+	    displayVerticalGrating(float(self.duration1b_val.get()),float(self.speed1b_val.get()),dir1,float(self.duration2b_val.get()),float(self.speed2b_val.get()),dir2)
 	elif self.radVar.get() == 1:
-	    print('hi')
+	    displayCircularStimuli()
 	else:
 	    print('Please select at least one option!')
 
