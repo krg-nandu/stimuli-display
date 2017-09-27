@@ -142,6 +142,11 @@ class Application(Frame):
 	self.radButton = Checkbutton(self.heading2,text='Spinning Stimuli',variable=self.radVar,command=self.selectRad)
 	self.radButton.grid(row=8,column=0,columnspan=9,sticky='ew')
 
+	self.radDurationLabel = Label(self.heading2,text='Duration (in frames)').grid(row=row_num,column=0,columnspan=2)
+	self.radDuration_val = Entry(self.heading2)
+	self.radDuration_val.grid(row=row_num,column=2,columnspan=2,sticky='ew')
+
+	row_num=row_num+1
 	####################
 	self.well1_label = Label(self.heading2, text='Well 1',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
 	self.th1_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
@@ -328,7 +333,7 @@ class Application(Frame):
 	    colors = [self.color1_val.get(), self.color2_val.get(),self.color3_val.get(),self.color4_val.get(),self.color5_val.get(),self.color6_val.get()]
 	    thicknesses = [float(self.th1_val.get()),float(self.th2_val.get()),float(self.th3_val.get()),float(self.th4_val.get()),float(self.th5_val.get()),float(self.th6_val.get())]
 
-	    displayCircularStimuli(directions,colors,thicknesses)
+	    displayCircularStimuli(directions,colors,thicknesses,int(self.radDuration_val.get()))
 	else:
 	    print('Please select at least one option!')
 

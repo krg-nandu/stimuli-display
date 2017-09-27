@@ -158,7 +158,7 @@ mywin.close()
 core.quit()
 '''
 
-def displayCircularStimuli(directions,colors,thicknesses):
+def displayCircularStimuli(directions,colors,thicknesses,duration):
 	ops = []
 	for d in directions:
 		if d == 'Clockwise':
@@ -188,12 +188,12 @@ def displayCircularStimuli(directions,colors,thicknesses):
 		white.draw()
 		plate.draw()
 		mywin.flip()
-		if event.waitKeys(0.1)==["escape"]:
+		if event.waitKeys(0.01)==["escape"]:
 			break	
 	event.clearEvents()
 
 	clock = core.Clock()
-	for frameN in range(200):
+	for frameN in range(duration):
 		white.draw()
 		plate.draw()
 
