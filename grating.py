@@ -65,100 +65,17 @@ rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
 log_file=[]
 timer=core.Clock()
 
-
-'''
-Link to (and initiate) capture from the camera and pause for a few (3) seconds before
-displaying the stimuli on the screen
-'''
-#args = ("/usr/src/flycapture/bin/SaveImageToAviEx",str(capture_duration))
-#p = subprocess.Popen(args)
-#time.sleep(3)
-
-'''
-# display grating
-timer.reset()
-while timer.getTime()<=duration_max: 
-	ta=time.time()
-	#print timer.getTime()
-	white.draw()
-	if direction!=None:
-		grating.setPhase(speed,direction)
-
-		# switch by pressing "s"
-		if duration_one<=0 and duration_two<=0:
-			if event.waitKeys(0.005)==["s"]:
-				if direction=="+":
-					direction="-"
-				else:
-					direction="+"
-		# switch by time 
-		else:
-			if switched==False and duration_one<=timer.getTime()<duration_one+duration_two:
-				if direction=="+":
-					direction="-"
-					print "Switching From + to - at %.3fs" %timer.getTime() 
-
-				elif direction=="-":
-					direction="+"
-					print "Switching From - to + at %.3fs" %timer.getTime() 
-
-				switched=True
-			if timer.getTime()>=duration_one+duration_two:
-				break
-	else:
-		if timer.getTime()>=duration_one+duration_two:
-			break
-	grating.draw()
-	mywin.flip()
-
-	if event.waitKeys(0.005)==["escape"]: 
-		break	
-	event.clearEvents()
-	tb=time.time()
-	#print tb-ta
-print "Grating Ends at %.3fs" %timer.getTime()
-
-# end on white
-while True: 
-	white.draw()
-	plate.draw()
-	mywin.flip()
-	if event.waitKeys(0.1)==["escape"]: 
-		break	
-	event.clearEvents()
-'''
-
-'''
-clock = core.Clock()
-for frameN in range(200):
-	white.draw()
-	plate.draw()
-	background.draw()
-	#grating.setPhase(0.1, '+')
-	#grating.draw()
-	#shape.setPhase(0.1,'+')
-	shape1.setOri(2,operation='+')
-	shape1.draw()
-
-	shape2.setOri(5,operation='+')
-	shape2.draw()
-	
-	shape3.setOri(2,operation='-')
-	shape3.draw()
-
-	shape4.draw()
-	shape5.draw()
-	shape6.draw()
-
-	mywin.logOnFlip(level=logging.EXP, msg='sent on actual flip')
-	mywin.flip()
-
-
-mywin.close()
-core.quit()
-'''
+def startCamera():
+	'''
+	Link to (and initiate) capture from the camera and pause for a few (3) seconds before
+	displaying the stimuli on the screen
+	'''
+	#args = ("/usr/src/flycapture/bin/SaveImageToAviEx",str(capture_duration))
+	#p = subprocess.Popen(args)
+	#time.sleep(3)
 
 def displayCircularStimuli(directions,colors,thicknesses,duration):
+	startCamera()
 	ops = []
 	for d in directions:
 		if d == 'Clockwise':
@@ -168,16 +85,27 @@ def displayCircularStimuli(directions,colors,thicknesses,duration):
 
 	shape1 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[0], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
+	shape1b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[0],pos=(-width_plate/6.0,height_plate/8))
+
 	shape2 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[1], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape2b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[1],pos=(0,height_plate/8))
 
 	shape3 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[2], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
+	shape3b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[2],pos=(width_plate/6.0,height_plate/8))
+
 	shape4 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[3], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+
+	shape4b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[3],pos=(-width_plate/6.0,-height_plate/8))
 
 	shape5 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[4], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
+	shape5b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[4],pos=(0,-height_plate/8))
+
 	shape6 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[5], lineColor='black', lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
+	shape6b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[5],pos=(width_plate/6.0,-height_plate/8))
 
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
@@ -198,21 +126,28 @@ def displayCircularStimuli(directions,colors,thicknesses,duration):
 		plate.draw()
 
 		shape1.setOri(2,operation=ops[0])
+		shape1b.draw()
 		shape1.draw()
 
+
 		shape2.setOri(5,operation=ops[1])
+		shape2b.draw()
 		shape2.draw()
 	
 		shape3.setOri(2,operation=ops[2])
+		shape3b.draw()
 		shape3.draw()
 
 		shape4.setOri(2,operation=ops[3])
+		shape4b.draw()
 		shape4.draw()
 
 		shape5.setOri(2,operation=ops[4])
+		shape5b.draw()
 		shape5.draw()
 
 		shape6.setOri(2,operation=ops[5])
+		shape6b.draw()
 		shape6.draw()
 	
 		mywin.logOnFlip(level=logging.EXP, msg='sent on actual flip')
@@ -247,9 +182,11 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 	mywin.close()
 
 def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2):
+	startCamera()
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2):
+	startCamera()
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
