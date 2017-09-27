@@ -74,7 +74,7 @@ def startCamera():
 	#p = subprocess.Popen(args)
 	#time.sleep(3)
 
-def displayCircularStimuli(directions,colors,thicknesses,duration):
+def displayCircularStimuli(directions,colors,thicknesses,speeds,duration):
 	startCamera()
 	ops = []
 	for d in directions:
@@ -125,28 +125,28 @@ def displayCircularStimuli(directions,colors,thicknesses,duration):
 		white.draw()
 		plate.draw()
 
-		shape1.setOri(2,operation=ops[0])
+		shape1.setOri(speeds[0],operation=ops[0])
 		shape1b.draw()
 		shape1.draw()
 
 
-		shape2.setOri(5,operation=ops[1])
+		shape2.setOri(speeds[1],operation=ops[1])
 		shape2b.draw()
 		shape2.draw()
 	
-		shape3.setOri(2,operation=ops[2])
+		shape3.setOri(speeds[2],operation=ops[2])
 		shape3b.draw()
 		shape3.draw()
 
-		shape4.setOri(2,operation=ops[3])
+		shape4.setOri(speeds[3],operation=ops[3])
 		shape4b.draw()
 		shape4.draw()
 
-		shape5.setOri(2,operation=ops[4])
+		shape5.setOri(speeds[4],operation=ops[4])
 		shape5b.draw()
 		shape5.draw()
 
-		shape6.setOri(2,operation=ops[5])
+		shape6.setOri(speeds[5],operation=ops[5])
 		shape6b.draw()
 		shape6.draw()
 	

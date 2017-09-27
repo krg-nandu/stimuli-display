@@ -152,36 +152,45 @@ class Application(Frame):
 	self.th1_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
 	self.th1_val = Entry(self.heading2)
 	self.th1_val.grid(row=row_num+1,column=1)
-	self.color1_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=0)
+
+	self.sp1_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=0)
+	self.sp1_val = Entry(self.heading2)
+	self.sp1_val.grid(row=row_num+2,column=1)
+
+	self.color1_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=0)
 
 	self.color1_val = StringVar(self.heading2)
 	self.color1_val.set(self.COLOR_OPTIONS[0])
 	self.color1_menu = apply(OptionMenu, (self.heading2, self.color1_val) + tuple(self.COLOR_OPTIONS))
-	self.color1_menu.grid(row=row_num+2,column=1,sticky="ew")
+	self.color1_menu.grid(row=row_num+3,column=1,sticky="ew")
 
-	self.dr1_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=0)
+	self.dr1_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=0)
 	self.dr1_val = StringVar(self.heading2)
 	self.dr1_val.set(self.DIR_OPTIONS[0])
 	self.dr1_menu = apply(OptionMenu, (self.heading2, self.dr1_val) + tuple(self.DIR_OPTIONS))
-	self.dr1_menu.grid(row=row_num+3,column=1,sticky="ew")
+	self.dr1_menu.grid(row=row_num+4,column=1,sticky="ew")
 	
 	####################
 	self.well2_label = Label(self.heading2, text='Well 2',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
 	self.th2_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
 	self.th2_val = Entry(self.heading2)
 	self.th2_val.grid(row=row_num+1,column=3)
-	self.color2_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=2,sticky=E)
+	self.color2_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=2,sticky=E)
+
+	self.sp2_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=2,sticky=E)
+	self.sp2_val = Entry(self.heading2)
+	self.sp2_val.grid(row=row_num+2,column=3)
 
 	self.color2_val = StringVar(self.heading2)
 	self.color2_val.set(self.COLOR_OPTIONS[0])
 	self.color2_menu = apply(OptionMenu, (self.heading2, self.color2_val) + tuple(self.COLOR_OPTIONS))
-	self.color2_menu.grid(row=row_num+2,column=3,sticky="ew")
+	self.color2_menu.grid(row=row_num+3,column=3,sticky="ew")
 
-	self.dr2_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=2,sticky=E)
+	self.dr2_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=2,sticky=E)
 	self.dr2_val = StringVar(self.heading2)
 	self.dr2_val.set(self.DIR_OPTIONS[0])
 	self.dr2_menu = apply(OptionMenu, (self.heading2, self.dr2_val) + tuple(self.DIR_OPTIONS))
-	self.dr2_menu.grid(row=row_num+3,column=3,sticky="ew")
+	self.dr2_menu.grid(row=row_num+4,column=3,sticky="ew")
 	####################
 
 	self.well3_label = Label(self.heading2, text='Well 3',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
@@ -189,88 +198,108 @@ class Application(Frame):
 	self.th3_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=4,sticky=E)
 	self.th3_val = Entry(self.heading2)
 	self.th3_val.grid(row=row_num+1,column=5)
-	self.color3_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=4,sticky=E)
+
+	self.sp3_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=4,sticky=E)
+	self.sp3_val = Entry(self.heading2)
+	self.sp3_val.grid(row=row_num+2,column=5)
+
+	self.color3_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=4,sticky=E)
 
 	self.color3_val = StringVar(self.heading2)
 	self.color3_val.set(self.COLOR_OPTIONS[0])
 	self.color3_menu = apply(OptionMenu, (self.heading2, self.color3_val) + tuple(self.COLOR_OPTIONS))
-	self.color3_menu.grid(row=row_num+2,column=5,sticky="ew")
+	self.color3_menu.grid(row=row_num+3,column=5,sticky="ew")
 
-	self.dr3_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=4,sticky=E)
+	self.dr3_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=4,sticky=E)
 	self.dr3_val = StringVar(self.heading2)
 	self.dr3_val.set(self.DIR_OPTIONS[0])
 	self.dr3_menu = apply(OptionMenu, (self.heading2, self.dr3_val) + tuple(self.DIR_OPTIONS))
-	self.dr3_menu.grid(row=row_num+3,column=5,sticky="ew")
+	self.dr3_menu.grid(row=row_num+4,column=5,sticky="ew")
 	####################
 
-	row_num=row_num+4
+	row_num=row_num+5
 	self.well4_label = Label(self.heading2, text='Well 4',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
 
 	self.th4_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
 	self.th4_val = Entry(self.heading2)
 	self.th4_val.grid(row=row_num+1,column=1)
-	self.color4_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=0)
+
+	self.sp4_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=0)
+	self.sp4_val = Entry(self.heading2)
+	self.sp4_val.grid(row=row_num+2,column=1)
+
+	self.color4_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=0)
 
 	self.color4_val = StringVar(self.heading2)
 	self.color4_val.set(self.COLOR_OPTIONS[0])
 
 	self.color4_menu = apply(OptionMenu, (self.heading2, self.color4_val) + tuple(self.COLOR_OPTIONS))
-	self.color4_menu.grid(row=row_num+2,column=1,sticky="ew")
+	self.color4_menu.grid(row=row_num+3,column=1,sticky="ew")
 
-	self.dr4_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=0)
+	self.dr4_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=0)
 	self.dr4_val = StringVar(self.heading2)
 	self.dr4_val.set(self.DIR_OPTIONS[0])
 	self.dr4_menu = apply(OptionMenu, (self.heading2, self.dr4_val) + tuple(self.DIR_OPTIONS))
-	self.dr4_menu.grid(row=row_num+3,column=1,sticky="ew")
+	self.dr4_menu.grid(row=row_num+4,column=1,sticky="ew")
 	####################
 
 	self.well5_label = Label(self.heading2, text='Well 5',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
 	self.th5_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
 	self.th5_val = Entry(self.heading2)
 	self.th5_val.grid(row=row_num+1,column=3)
-	self.color5_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=2,sticky=E)
+
+	self.sp5_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=2,sticky=E)
+	self.sp5_val = Entry(self.heading2)
+	self.sp5_val.grid(row=row_num+2,column=3)
+
+	self.color5_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=2,sticky=E)
 
 	self.color5_val = StringVar(self.heading2)
 	self.color5_val.set(self.COLOR_OPTIONS[0])
 	self.color5_menu = apply(OptionMenu, (self.heading2, self.color5_val) + tuple(self.COLOR_OPTIONS))
-	self.color5_menu.grid(row=row_num+2,column=3,sticky="ew")
+	self.color5_menu.grid(row=row_num+3,column=3,sticky="ew")
 
-	self.dr5_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=2,sticky=E)
+	self.dr5_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=2,sticky=E)
 	self.dr5_val = StringVar(self.heading2)
 	self.dr5_val.set(self.DIR_OPTIONS[0])
 	self.dr5_menu = apply(OptionMenu, (self.heading2, self.dr5_val) + tuple(self.DIR_OPTIONS))
-	self.dr5_menu.grid(row=row_num+3,column=3,sticky="ew")
+	self.dr5_menu.grid(row=row_num+4,column=3,sticky="ew")
 	####################
 
 	self.well6_label = Label(self.heading2, text='Well 6',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
 	self.th6_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=4,sticky=E)
 	self.th6_val = Entry(self.heading2)
 	self.th6_val.grid(row=row_num+1,column=5)
-	self.color6_label = Label(self.heading2, text='Color : ').grid(row=row_num+2,column=4,sticky=E)
+
+	self.sp6_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=4,sticky=E)
+	self.sp6_val = Entry(self.heading2)
+	self.sp6_val.grid(row=row_num+2,column=5)
+
+	self.color6_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=4,sticky=E)
 
 	self.color6_val = StringVar(self.heading2)
 	self.color6_val.set(self.COLOR_OPTIONS[0])
 	self.color6_menu = apply(OptionMenu, (self.heading2, self.color6_val) + tuple(self.COLOR_OPTIONS))
-	self.color6_menu.grid(row=row_num+2,column=5,sticky="ew")
+	self.color6_menu.grid(row=row_num+3,column=5,sticky="ew")
 
-	self.dr6_label = Label(self.heading2, text='Direction : ').grid(row=row_num+3,column=4,sticky=E)
+	self.dr6_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=4,sticky=E)
 	self.dr6_val = StringVar(self.heading2)
 	self.dr6_val.set(self.DIR_OPTIONS[0])
 	self.dr6_menu = apply(OptionMenu, (self.heading2, self.dr6_val) + tuple(self.DIR_OPTIONS))
-	self.dr6_menu.grid(row=row_num+3,column=5,sticky="ew")
+	self.dr6_menu.grid(row=row_num+4,column=5,sticky="ew")
 	####################
 
 	self.qlabel = Label(master,fg='red',bd=10)
-	self.qlabel.grid(row=row_num+4,column=5,columnspan=4,sticky='ew')
+	self.qlabel.grid(row=row_num+5,column=5,columnspan=4,sticky='ew')
         self.quit = Button(self.qlabel,text='Exit the program!',command=self.quit)
-	self.quit.grid(row=row_num+4,column=5,sticky=E)
+	self.quit.grid(row=row_num+5,column=5,sticky=E)
 
 	####################
 
 	self.startlabel = Label(master,fg='red',bd=10)
-	self.startlabel.grid(row=row_num+4,column=0,columnspan=4,sticky='ew')
+	self.startlabel.grid(row=row_num+5,column=0,columnspan=4,sticky='ew')
         self.start = Button(self.startlabel,text='Start the experiment!',command=self.runExp)
-	self.start.grid(row=row_num+4,column=0,sticky=E)
+	self.start.grid(row=row_num+5,column=0,sticky=E)
 
     def toggleGroup(self,group,value):
 	if value == 1:
@@ -332,8 +361,8 @@ class Application(Frame):
 	    directions = [self.dr1_val.get(),self.dr2_val.get(),self.dr3_val.get(),self.dr4_val.get(),self.dr5_val.get(),self.dr6_val.get()]
 	    colors = [self.color1_val.get(), self.color2_val.get(),self.color3_val.get(),self.color4_val.get(),self.color5_val.get(),self.color6_val.get()]
 	    thicknesses = [float(self.th1_val.get()),float(self.th2_val.get()),float(self.th3_val.get()),float(self.th4_val.get()),float(self.th5_val.get()),float(self.th6_val.get())]
-
-	    displayCircularStimuli(directions,colors,thicknesses,int(self.radDuration_val.get()))
+	    speeds = [float(self.sp1_val.get()),float(self.sp2_val.get()),float(self.sp3_val.get()),float(self.sp4_val.get()),float(self.sp5_val.get()),float(self.sp6_val.get())]
+	    displayCircularStimuli(directions,colors,thicknesses,speeds,int(self.radDuration_val.get()))
 	else:
 	    print('Please select at least one option!')
 
