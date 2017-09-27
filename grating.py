@@ -3,10 +3,10 @@ import numpy as np
 import time
 import subprocess, sys
 
-logging.console.setLevel(logging.WARNING)
-log = logging.LogFile("run.log", level=logging.INFO,filemode='w')
+logging.console.setLevel(logging.CRITICAL)
+log = logging.LogFile("stimuli_timing.log", level=logging.CRITICAL,filemode='w')
 
-globalClock = core.Clock()
+globalClock = core.MonotonicClock(start_time=0)
 logging.setDefaultClock(globalClock)
 
 def write_file(output_name,list_name):
@@ -116,7 +116,7 @@ def displayCircularStimuli(directions,colors,thicknesses,speeds,duration):
 		white.draw()
 		plate.draw()
 		mywin.flip()
-		if event.waitKeys(0.01)==["escape"]:
+		if event.waitKeys(0.5)==["escape"]:
 			break	
 	event.clearEvents()
 
@@ -150,7 +150,7 @@ def displayCircularStimuli(directions,colors,thicknesses,speeds,duration):
 		shape6b.draw()
 		shape6.draw()
 	
-		mywin.logOnFlip(level=logging.EXP, msg='sent on actual flip')
+		mywin.logOnFlip(level=logging.CRITICAL, msg='sent on actual flip')
 		mywin.flip()
 	mywin.close()
 	core.quit()
@@ -165,7 +165,7 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 		white.draw()
 		plate.draw()
 		mywin.flip()
-		if event.waitKeys(0.1)==["escape"]:
+		if event.waitKeys(0.5)==["escape"]:
 			break	
 	event.clearEvents()
 
@@ -177,6 +177,8 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 		else:
 			grating.setPhase(speed2,dir2)
 		grating.draw()
+		if (t==0) or (t==t1) or (t==(t1+t2-1)):
+			mywin.logOnFlip(level=logging.CRITICAL, msg='sent on actual flip')
 		mywin.flip()
 		t=t+1
 	mywin.close()
