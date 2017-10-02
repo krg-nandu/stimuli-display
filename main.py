@@ -197,12 +197,14 @@ class Application(Frame):
 	####################
 	self.well2_label = Label(self.heading2, text='Well 2',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
 	self.th2_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
-	self.th2_val = Entry(self.heading2)
+	self.th2_var = StringVar()
+	self.th2_val = Entry(self.heading2,textvariable=self.th2_var)
 	self.th2_val.grid(row=row_num+1,column=3)
 	self.color2_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=2,sticky=E)
 
 	self.sp2_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=2,sticky=E)
-	self.sp2_val = Entry(self.heading2)
+	self.sp2_var = StringVar()
+	self.sp2_val = Entry(self.heading2,textvariable=self.sp2_var)
 	self.sp2_val.grid(row=row_num+2,column=3)
 
 	self.color2_val = StringVar(self.heading2)
@@ -226,11 +228,13 @@ class Application(Frame):
 	self.well3_label = Label(self.heading2, text='Well 3',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
 
 	self.th3_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=4,sticky=E)
-	self.th3_val = Entry(self.heading2)
+	self.th3_var = StringVar()
+	self.th3_val = Entry(self.heading2,textvariable=self.th3_var)
 	self.th3_val.grid(row=row_num+1,column=5)
 
 	self.sp3_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=4,sticky=E)
-	self.sp3_val = Entry(self.heading2)
+	self.sp3_var = StringVar()
+	self.sp3_val = Entry(self.heading2,textvariable=self.sp3_var)
 	self.sp3_val.grid(row=row_num+2,column=5)
 
 	self.color3_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=4,sticky=E)
@@ -256,11 +260,13 @@ class Application(Frame):
 	self.well4_label = Label(self.heading2, text='Well 4',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
 
 	self.th4_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
-	self.th4_val = Entry(self.heading2)
+	self.th4_var = StringVar()
+	self.th4_val = Entry(self.heading2,textvariable=self.th4_var)
 	self.th4_val.grid(row=row_num+1,column=1)
 
 	self.sp4_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=0)
-	self.sp4_val = Entry(self.heading2)
+	self.sp4_var = StringVar()
+	self.sp4_val = Entry(self.heading2,textvariable=self.sp4_var)
 	self.sp4_val.grid(row=row_num+2,column=1)
 
 	self.color4_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=0)
@@ -284,11 +290,13 @@ class Application(Frame):
 
 	self.well5_label = Label(self.heading2, text='Well 5',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
 	self.th5_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=2,sticky=E)
-	self.th5_val = Entry(self.heading2)
+	self.th5_var = StringVar()
+	self.th5_val = Entry(self.heading2,textvariable=self.th5_var)
 	self.th5_val.grid(row=row_num+1,column=3)
 
 	self.sp5_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=2,sticky=E)
-	self.sp5_val = Entry(self.heading2)
+	self.sp5_var = StringVar()
+	self.sp5_val = Entry(self.heading2,textvariable=self.sp5_var)
 	self.sp5_val.grid(row=row_num+2,column=3)
 
 	self.color5_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=2,sticky=E)
@@ -312,11 +320,13 @@ class Application(Frame):
 
 	self.well6_label = Label(self.heading2, text='Well 6',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
 	self.th6_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=4,sticky=E)
-	self.th6_val = Entry(self.heading2)
+	self.th6_var = StringVar()	
+	self.th6_val = Entry(self.heading2,textvariable=self.th6_var)
 	self.th6_val.grid(row=row_num+1,column=5)
 
 	self.sp6_label = Label(self.heading2, text='Speed : ').grid(row=row_num+2,column=4,sticky=E)
-	self.sp6_val = Entry(self.heading2)
+	self.sp6_var = StringVar()
+	self.sp6_val = Entry(self.heading2,textvariable=self.sp6_var)
 	self.sp6_val.grid(row=row_num+2,column=5)
 
 	self.color6_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=4,sticky=E)
@@ -391,9 +401,41 @@ class Application(Frame):
 	self.toggleGroup(self.heading3,self.nostimVar.get())
 	self.toggleGroup(self.heading2,self.nostimVar.get())
 
+    # copy settings of well 1 into all the other wells
     def apply_all(self):
-	 # copy settings of well 1 into all the other wells
-	print 'hi'
+	if self.radVar.get() == 0 or self.appall.get() == 0:
+		# radial stimulus is not selected or the apply all option is not selected
+		return
+	print 'Copying settings of well 1 into all the other wells'
+	self.th2_var.set(self.th1_val.get())
+  	self.sp2_var.set(self.sp1_val.get())
+	self.color2_val.set(self.color1_val.get())
+	self.color2wh_val.set(self.color1wh_val.get())
+	self.dr2_val.set(self.dr1_val.get())
+
+	self.th3_var.set(self.th1_val.get())
+  	self.sp3_var.set(self.sp1_val.get())
+	self.color3_val.set(self.color1_val.get())
+	self.color3wh_val.set(self.color1wh_val.get())
+	self.dr3_val.set(self.dr1_val.get())
+
+	self.th4_var.set(self.th1_val.get())
+  	self.sp4_var.set(self.sp1_val.get())
+	self.color4_val.set(self.color1_val.get())
+	self.color4wh_val.set(self.color1wh_val.get())
+	self.dr4_val.set(self.dr1_val.get())
+
+	self.th5_var.set(self.th1_val.get())
+  	self.sp5_var.set(self.sp1_val.get())
+	self.color5_val.set(self.color1_val.get())
+	self.color5wh_val.set(self.color1wh_val.get())
+	self.dr5_val.set(self.dr1_val.get())
+
+	self.th6_var.set(self.th1_val.get())
+  	self.sp6_var.set(self.sp1_val.get())
+	self.color6_val.set(self.color1_val.get())
+	self.color6wh_val.set(self.color1wh_val.get())
+	self.dr6_val.set(self.dr1_val.get())
 
     def runExp(self):
     	'''
