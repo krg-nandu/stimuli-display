@@ -183,12 +183,12 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 		t=t+1
 	mywin.close()
 
-def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2):
+def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
 	startCamera()
-	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
+	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
-def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2):
+def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
 	startCamera()
-	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=1.0/pix_per_cycle)
+	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)

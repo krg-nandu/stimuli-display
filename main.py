@@ -411,7 +411,7 @@ class Application(Frame):
 		    dir2=dir2+'+'
 	    else:
 		    dir2=dir2+'-'
-	    displayHorizontalGrating(float(self.duration1_val.get()),float(self.speed1_val.get()),dir1,float(self.duration2_val.get()),float(self.speed2_val.get()),dir2)
+	    displayHorizontalGrating(float(self.duration1_val.get()),float(self.speed1_val.get()),dir1,float(self.duration2_val.get()),float(self.speed2_val.get()),dir2,float(self.hthick_val.get()))
 
 	elif self.vgvar.get() == 1:
 	    # VERTICAL GRATING
@@ -426,7 +426,7 @@ class Application(Frame):
 		    dir2=dir2+'+'
 	    else:
 		    dir2=dir2+'-'
-	    displayVerticalGrating(float(self.duration1b_val.get()),float(self.speed1b_val.get()),dir1,float(self.duration2b_val.get()),float(self.speed2b_val.get()),dir2)
+	    displayVerticalGrating(float(self.duration1b_val.get()),float(self.speed1b_val.get()),dir1,float(self.duration2b_val.get()),float(self.speed2b_val.get()),dir2,float(self.vthick_val.get()))
 	elif self.radVar.get() == 1:
 	    # RADIAL STIMULI
 	    directions = [self.dr1_val.get(),self.dr2_val.get(),self.dr3_val.get(),self.dr4_val.get(),self.dr5_val.get(),self.dr6_val.get()]
