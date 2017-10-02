@@ -146,7 +146,12 @@ class Application(Frame):
 	self.radDuration_val = Entry(self.heading2)
 	self.radDuration_val.grid(row=row_num,column=2,columnspan=2,sticky='ew')
 
-	row_num=row_num+1
+	# apply option to all wells
+	self.appall = IntVar()
+	self.applyAll = Checkbutton(self.heading2, text='Apply option to all wells',variable=self.appall,command=self.apply_all)
+	self.applyAll.grid(row=row_num+1,column=0,columnspan=9,sticky='ew')
+
+	row_num=row_num+2
 	####################
 	self.well1_label = Label(self.heading2, text='Well 1',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
 	self.th1_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
@@ -288,18 +293,28 @@ class Application(Frame):
 	self.dr6_menu = apply(OptionMenu, (self.heading2, self.dr6_val) + tuple(self.DIR_OPTIONS))
 	self.dr6_menu.grid(row=row_num+4,column=5,sticky="ew")
 	####################
+	row_num=row_num+5	
 
+	# no stimuli
+	self.heading4 = Label(master,fg='red')
+	self.heading4.grid(row=row_num+1,column=0,columnspan=9,sticky='ew')
+	self.nostimVar = IntVar() 
+	self.nsButton = Checkbutton(self.heading4,text='No Stimuli (Arena exploration tasks)',variable=self.nostimVar,command=self.selectNoStim)
+	self.nsButton.grid(row=row_num+1,column=0,columnspan=9,sticky='ew')
+
+
+	####################
 	self.qlabel = Label(master,fg='red',bd=10)
-	self.qlabel.grid(row=row_num+5,column=5,columnspan=4,sticky='ew')
+	self.qlabel.grid(row=row_num+2,column=5,columnspan=4,sticky='ew')
         self.quit = Button(self.qlabel,text='Exit the program!',command=self.quit)
-	self.quit.grid(row=row_num+5,column=5,sticky=E)
+	self.quit.grid(row=row_num+2,column=5,sticky=E)
 
 	####################
 
 	self.startlabel = Label(master,fg='red',bd=10)
-	self.startlabel.grid(row=row_num+5,column=0,columnspan=4,sticky='ew')
+	self.startlabel.grid(row=row_num+2,column=0,columnspan=4,sticky='ew')
         self.start = Button(self.startlabel,text='Start the experiment!',command=self.runExp)
-	self.start.grid(row=row_num+5,column=0,sticky=E)
+	self.start.grid(row=row_num+2,column=0,sticky=E)
 
     def toggleGroup(self,group,value):
 	if value == 1:
@@ -313,14 +328,26 @@ class Application(Frame):
     def selectHGratings(self):
 	self.toggleGroup(self.heading3,self.hgvar.get())
 	self.toggleGroup(self.heading2,self.hgvar.get())
+	self.toggleGroup(self.heading4,self.hgvar.get())
 	
     def selectVGratings(self):
 	self.toggleGroup(self.heading1,self.vgvar.get())
 	self.toggleGroup(self.heading2,self.vgvar.get())
+	self.toggleGroup(self.heading4,self.vgvar.get())
 
     def selectRad(self):
 	self.toggleGroup(self.heading1,self.radVar.get())
 	self.toggleGroup(self.heading3,self.radVar.get())
+	self.toggleGroup(self.heading4,self.radVar.get())
+
+    def selectNoStim(self):
+	self.toggleGroup(self.heading1,self.nostimVar.get())
+	self.toggleGroup(self.heading3,self.nostimVar.get())
+	self.toggleGroup(self.heading2,self.nostimVar.get())
+
+    def apply_all(self):
+	 # copy settings of well 1 into all the other wells
+	print 'hi'
 
     def runExp(self):
     	'''
