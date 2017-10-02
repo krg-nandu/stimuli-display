@@ -264,18 +264,22 @@ class Application(Frame):
 	self.sp4_val.grid(row=row_num+2,column=1)
 
 	self.color4_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=0)
-
 	self.color4_val = StringVar(self.heading2)
 	self.color4_val.set(self.COLOR_OPTIONS[0])
-
 	self.color4_menu = apply(OptionMenu, (self.heading2, self.color4_val) + tuple(self.COLOR_OPTIONS))
 	self.color4_menu.grid(row=row_num+3,column=1,sticky="ew")
 
-	self.dr4_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=0)
+	self.color4wh_label = Label(self.heading2, text='Color(Wheel) : ').grid(row=row_num+4,column=0)
+	self.color4wh_val = StringVar(self.heading2)
+	self.color4wh_val.set(self.COLOR_OPTIONS[0])
+	self.color4wh_menu = apply(OptionMenu, (self.heading2, self.color4wh_val) + tuple(self.COLOR_OPTIONS))
+	self.color4wh_menu.grid(row=row_num+4,column=1,sticky="ew")
+
+	self.dr4_label = Label(self.heading2, text='Direction : ').grid(row=row_num+5,column=0)
 	self.dr4_val = StringVar(self.heading2)
 	self.dr4_val.set(self.DIR_OPTIONS[0])
 	self.dr4_menu = apply(OptionMenu, (self.heading2, self.dr4_val) + tuple(self.DIR_OPTIONS))
-	self.dr4_menu.grid(row=row_num+4,column=1,sticky="ew")
+	self.dr4_menu.grid(row=row_num+5,column=1,sticky="ew")
 	####################
 
 	self.well5_label = Label(self.heading2, text='Well 5',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
@@ -288,17 +292,22 @@ class Application(Frame):
 	self.sp5_val.grid(row=row_num+2,column=3)
 
 	self.color5_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=2,sticky=E)
-
 	self.color5_val = StringVar(self.heading2)
 	self.color5_val.set(self.COLOR_OPTIONS[0])
 	self.color5_menu = apply(OptionMenu, (self.heading2, self.color5_val) + tuple(self.COLOR_OPTIONS))
 	self.color5_menu.grid(row=row_num+3,column=3,sticky="ew")
 
-	self.dr5_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=2,sticky=E)
+	self.color5wh_label = Label(self.heading2, text='Color(Wheel) : ').grid(row=row_num+4,column=2,sticky=E)
+	self.color5wh_val = StringVar(self.heading2)
+	self.color5wh_val.set(self.COLOR_OPTIONS[0])
+	self.color5wh_menu = apply(OptionMenu, (self.heading2, self.color5wh_val) + tuple(self.COLOR_OPTIONS))
+	self.color5wh_menu.grid(row=row_num+4,column=3,sticky="ew")
+
+	self.dr5_label = Label(self.heading2, text='Direction : ').grid(row=row_num+5,column=2,sticky=E)
 	self.dr5_val = StringVar(self.heading2)
 	self.dr5_val.set(self.DIR_OPTIONS[0])
 	self.dr5_menu = apply(OptionMenu, (self.heading2, self.dr5_val) + tuple(self.DIR_OPTIONS))
-	self.dr5_menu.grid(row=row_num+4,column=3,sticky="ew")
+	self.dr5_menu.grid(row=row_num+5,column=3,sticky="ew")
 	####################
 
 	self.well6_label = Label(self.heading2, text='Well 6',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
@@ -311,19 +320,24 @@ class Application(Frame):
 	self.sp6_val.grid(row=row_num+2,column=5)
 
 	self.color6_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=4,sticky=E)
-
 	self.color6_val = StringVar(self.heading2)
 	self.color6_val.set(self.COLOR_OPTIONS[0])
 	self.color6_menu = apply(OptionMenu, (self.heading2, self.color6_val) + tuple(self.COLOR_OPTIONS))
 	self.color6_menu.grid(row=row_num+3,column=5,sticky="ew")
 
-	self.dr6_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=4,sticky=E)
+	self.color6wh_label = Label(self.heading2, text='Color(Wheel) : ').grid(row=row_num+4,column=4,sticky=E)
+	self.color6wh_val = StringVar(self.heading2)
+	self.color6wh_val.set(self.COLOR_OPTIONS[0])
+	self.color6wh_menu = apply(OptionMenu, (self.heading2, self.color6wh_val) + tuple(self.COLOR_OPTIONS))
+	self.color6wh_menu.grid(row=row_num+4,column=5,sticky="ew")
+
+	self.dr6_label = Label(self.heading2, text='Direction : ').grid(row=row_num+5,column=4,sticky=E)
 	self.dr6_val = StringVar(self.heading2)
 	self.dr6_val.set(self.DIR_OPTIONS[0])
 	self.dr6_menu = apply(OptionMenu, (self.heading2, self.dr6_val) + tuple(self.DIR_OPTIONS))
-	self.dr6_menu.grid(row=row_num+4,column=5,sticky="ew")
+	self.dr6_menu.grid(row=row_num+5,column=5,sticky="ew")
 	####################
-	row_num=row_num+5	
+	row_num=row_num+6	
 
 	# no stimuli
 	self.heading4 = Label(master,fg='red')
