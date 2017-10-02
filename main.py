@@ -86,9 +86,9 @@ class Application(Frame):
 	self.vgratbutton.grid(row=row_num,column=3,columnspan=3,sticky='ew')
 
 	self.vthick_label = Label(self.heading3, text='Thickness : ')
-	self.vthick_label.grid(row=row_num+1,column=0)
+	self.vthick_label.grid(row=row_num+1,column=3)
 	self.vthick_val = Entry(self.heading3)
-	self.vthick_val.grid(row=row_num+1,column=1)
+	self.vthick_val.grid(row=row_num+1,column=4)
 
 	'''
 	Layout for the first stimulus: Direction, duration, speed
@@ -181,11 +181,18 @@ class Application(Frame):
 	self.color1_menu = apply(OptionMenu, (self.heading2, self.color1_val) + tuple(self.COLOR_OPTIONS))
 	self.color1_menu.grid(row=row_num+3,column=1,sticky="ew")
 
-	self.dr1_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=0)
+	self.color1wh_label = Label(self.heading2, text='Color(Wheel) : ').grid(row=row_num+4,column=0)
+
+	self.color1wh_val = StringVar(self.heading2)
+	self.color1wh_val.set(self.COLOR_OPTIONS[0])
+	self.color1wh_menu = apply(OptionMenu, (self.heading2, self.color1wh_val) + tuple(self.COLOR_OPTIONS))
+	self.color1wh_menu.grid(row=row_num+4,column=1,sticky="ew")
+
+	self.dr1_label = Label(self.heading2, text='Direction : ').grid(row=row_num+5,column=0)
 	self.dr1_val = StringVar(self.heading2)
 	self.dr1_val.set(self.DIR_OPTIONS[0])
 	self.dr1_menu = apply(OptionMenu, (self.heading2, self.dr1_val) + tuple(self.DIR_OPTIONS))
-	self.dr1_menu.grid(row=row_num+4,column=1,sticky="ew")
+	self.dr1_menu.grid(row=row_num+5,column=1,sticky="ew")
 	
 	####################
 	self.well2_label = Label(self.heading2, text='Well 2',fg='white',bg='gray').grid(row=row_num,column=2,columnspan=2)
@@ -203,11 +210,17 @@ class Application(Frame):
 	self.color2_menu = apply(OptionMenu, (self.heading2, self.color2_val) + tuple(self.COLOR_OPTIONS))
 	self.color2_menu.grid(row=row_num+3,column=3,sticky="ew")
 
-	self.dr2_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=2,sticky=E)
+	self.color2wh_label = Label(self.heading2, text='Color(Wheel) : ').grid(row=row_num+4,column=2,sticky=E)
+	self.color2wh_val = StringVar(self.heading2)
+	self.color2wh_val.set(self.COLOR_OPTIONS[0])
+	self.color2wh_menu = apply(OptionMenu, (self.heading2, self.color2wh_val) + tuple(self.COLOR_OPTIONS))
+	self.color2wh_menu.grid(row=row_num+4,column=3,sticky="ew")
+
+	self.dr2_label = Label(self.heading2, text='Direction : ').grid(row=row_num+5,column=2,sticky=E)
 	self.dr2_val = StringVar(self.heading2)
 	self.dr2_val.set(self.DIR_OPTIONS[0])
 	self.dr2_menu = apply(OptionMenu, (self.heading2, self.dr2_val) + tuple(self.DIR_OPTIONS))
-	self.dr2_menu.grid(row=row_num+4,column=3,sticky="ew")
+	self.dr2_menu.grid(row=row_num+5,column=3,sticky="ew")
 	####################
 
 	self.well3_label = Label(self.heading2, text='Well 3',fg='white',bg='gray').grid(row=row_num,column=4,columnspan=2)
@@ -221,20 +234,25 @@ class Application(Frame):
 	self.sp3_val.grid(row=row_num+2,column=5)
 
 	self.color3_label = Label(self.heading2, text='Color : ').grid(row=row_num+3,column=4,sticky=E)
-
 	self.color3_val = StringVar(self.heading2)
 	self.color3_val.set(self.COLOR_OPTIONS[0])
 	self.color3_menu = apply(OptionMenu, (self.heading2, self.color3_val) + tuple(self.COLOR_OPTIONS))
 	self.color3_menu.grid(row=row_num+3,column=5,sticky="ew")
 
-	self.dr3_label = Label(self.heading2, text='Direction : ').grid(row=row_num+4,column=4,sticky=E)
+	self.color3wh_label = Label(self.heading2, text='Color(Wheel) : ').grid(row=row_num+4,column=4,sticky=E)
+	self.color3wh_val = StringVar(self.heading2)
+	self.color3wh_val.set(self.COLOR_OPTIONS[0])
+	self.color3wh_menu = apply(OptionMenu, (self.heading2, self.color3wh_val) + tuple(self.COLOR_OPTIONS))
+	self.color3wh_menu.grid(row=row_num+4,column=5,sticky="ew")
+
+	self.dr3_label = Label(self.heading2, text='Direction : ').grid(row=row_num+5,column=4,sticky=E)
 	self.dr3_val = StringVar(self.heading2)
 	self.dr3_val.set(self.DIR_OPTIONS[0])
 	self.dr3_menu = apply(OptionMenu, (self.heading2, self.dr3_val) + tuple(self.DIR_OPTIONS))
-	self.dr3_menu.grid(row=row_num+4,column=5,sticky="ew")
+	self.dr3_menu.grid(row=row_num+5,column=5,sticky="ew")
 	####################
 
-	row_num=row_num+5
+	row_num=row_num+6
 	self.well4_label = Label(self.heading2, text='Well 4',fg='white',bg='gray').grid(row=row_num,column=0,columnspan=2)
 
 	self.th4_label = Label(self.heading2, text='Thickness : ').grid(row=row_num+1,column=0)
