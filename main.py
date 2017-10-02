@@ -343,9 +343,11 @@ class Application(Frame):
 	self.heading4 = Label(master,fg='red')
 	self.heading4.grid(row=row_num+1,column=0,columnspan=9,sticky='ew')
 	self.nostimVar = IntVar() 
-	self.nsButton = Checkbutton(self.heading4,text='No Stimuli (Arena exploration tasks)',variable=self.nostimVar,command=self.selectNoStim)
+	self.nsButton = Checkbutton(self.heading4,text='No Stimuli (Arena exploration tasks) for ',variable=self.nostimVar,command=self.selectNoStim)
 	self.nsButton.grid(row=row_num+1,column=0,columnspan=9,sticky='ew')
-
+	self.nsDur = Entry(self.heading4)
+	self.nsDur.grid(row=row_num+1,column=10,columnspan=2,sticky='w')
+	self.nsDummy = Label(self.heading4,text='frames').grid(row=row_num+1,column=12,sticky='w')
 
 	####################
 	self.qlabel = Label(master,fg='red',bd=10)
@@ -435,6 +437,8 @@ class Application(Frame):
 	    thicknesses = [float(self.th1_val.get()),float(self.th2_val.get()),float(self.th3_val.get()),float(self.th4_val.get()),float(self.th5_val.get()),float(self.th6_val.get())]
 	    speeds = [float(self.sp1_val.get()),float(self.sp2_val.get()),float(self.sp3_val.get()),float(self.sp4_val.get()),float(self.sp5_val.get()),float(self.sp6_val.get())]
 	    displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,int(self.radDuration_val.get()))
+	elif self.nostimVar.get() == 1:
+	    displayNoStimuli(float(self.nsDur.get()))	    
 	else:
 	    print('Please select at least one option!')
 

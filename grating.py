@@ -192,3 +192,25 @@ def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
 	startCamera()
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
+
+def displayNoStimuli(duration):
+	mywin.winHandle.maximize()
+	mywin.winHandle.set_fullscreen(True) 
+	mywin.winHandle.activate()
+
+    	# display white
+	while True: 
+		white.draw()
+		plate.draw()
+		mywin.flip()
+		if event.waitKeys(0.5)==["escape"]:
+			break	
+	event.clearEvents()
+
+	t=0
+	while (t < duration):
+		white.draw()
+		plate.draw()
+		mywin.flip()
+		t=t+1
+	mywin.close()
