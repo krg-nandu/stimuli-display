@@ -10,60 +10,67 @@ class Application(Frame):
 	Linear Stimuli
 	**************
 	'''
+	row_num=0
 	# set the linear stimuli label
 	self.heading1 = Label(master,fg='red',bd=10,highlightbackground='red')
-	self.heading1.grid(row=0,column=0,columnspan=3,sticky='ew')
+	self.heading1.grid(row=row_num,column=0,columnspan=3,sticky='ew')
         self.hgvar = IntVar() 
 	self.hgratbutton = Checkbutton(self.heading1,text='Horizontal Gratings',variable=self.hgvar,command=self.selectHGratings)
-	self.hgratbutton.grid(row=0,column=0,columnspan=3,sticky='ew')
+	self.hgratbutton.grid(row=row_num,column=0,columnspan=3,sticky='ew')
+
+	###
+	self.hthick_label = Label(self.heading1, text='Thickness : ')
+	self.hthick_label.grid(row=row_num+1,column=0)
+	self.hthick_val = Entry(self.heading1)
+	self.hthick_val.grid(row=row_num+1,column=1)
 
 	'''
 	Layout for the first stimulus: Direction, duration, speed
 	'''
 	self.direction1_label = Label(self.heading1, text='Initial Direction : ')
-	self.direction1_label.grid(row=1,column=0)
+	self.direction1_label.grid(row=row_num+2,column=0)
 
 	self._dir1PlusSet = IntVar()
 	self._dir1MinusSet = IntVar()
 	self.dir1_plus = Checkbutton(self.heading1,text='+',variable=self._dir1PlusSet)
-	self.dir1_plus.grid(row=1,column=1)
+	self.dir1_plus.grid(row=(row_num+2),column=1)
 
 	self.dir1_minus = Checkbutton(self.heading1,text='-',variable=self._dir1MinusSet)
-	self.dir1_minus.grid(row=1,column=2)
+	self.dir1_minus.grid(row=(row_num+2),column=2)
 	
 	self.duration1_label = Label(self.heading1, text='Duration (in frames) : ')
-	self.duration1_label.grid(row=2,column=0)
+	self.duration1_label.grid(row=(row_num+3),column=0)
 
 	self.duration1_val = Entry(self.heading1)
-	self.duration1_val.grid(row=2,column=1)
+	self.duration1_val.grid(row=(row_num+3),column=1)
 
 	self.speed1_label = Label(self.heading1, text='Speed : ')
-	self.speed1_label.grid(row=3,column=0)
+	self.speed1_label.grid(row=(row_num+4),column=0)
 	self.speed1_val = Entry(self.heading1)
-	self.speed1_val.grid(row=3,column=1)
+	self.speed1_val.grid(row=(row_num+4),column=1)
 
 	'''
 	Layout for the second stimulus: Direction, duration, speed
 	'''
 	self.direction2_label = Label(self.heading1, text='Direction shift: ')
-	self.direction2_label.grid(row=5,column=0)
+	self.direction2_label.grid(row=(row_num+5),column=0)
 
 	self._dir2PlusSet = IntVar()
 	self._dir2MinusSet = IntVar()
 	self.dir2_plus = Checkbutton(self.heading1,text='+',variable=self._dir2PlusSet)
-	self.dir2_plus.grid(row=5,column=1)
+	self.dir2_plus.grid(row=(row_num+5),column=1)
 	self.dir2_minus = Checkbutton(self.heading1,text='-',variable=self._dir2MinusSet)
-	self.dir2_minus.grid(row=5,column=2)
+	self.dir2_minus.grid(row=(row_num+5),column=2)
 	
 	self.duration2_label = Label(self.heading1, text='Duration (in frames) : ')
-	self.duration2_label.grid(row=6,column=0)
+	self.duration2_label.grid(row=(row_num+6),column=0)
 	self.duration2_val = Entry(self.heading1)
-	self.duration2_val.grid(row=6,column=1)
+	self.duration2_val.grid(row=(row_num+6),column=1)
 
 	self.speed2_label = Label(self.heading1, text='Speed : ')
-	self.speed2_label.grid(row=7,column=0)
+	self.speed2_label.grid(row=(row_num+7),column=0)
 	self.speed2_val = Entry(self.heading1)
-	self.speed2_val.grid(row=7,column=1)
+	self.speed2_val.grid(row=(row_num+7),column=1)
 
 
 	'''
