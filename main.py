@@ -431,9 +431,10 @@ class Application(Frame):
 	    # RADIAL STIMULI
 	    directions = [self.dr1_val.get(),self.dr2_val.get(),self.dr3_val.get(),self.dr4_val.get(),self.dr5_val.get(),self.dr6_val.get()]
 	    colors = [self.color1_val.get(), self.color2_val.get(),self.color3_val.get(),self.color4_val.get(),self.color5_val.get(),self.color6_val.get()]
+	    colors_wheel = [self.color1wh_val.get(), self.color2wh_val.get(),self.color3wh_val.get(),self.color4wh_val.get(),self.color5wh_val.get(),self.color6wh_val.get()]
 	    thicknesses = [float(self.th1_val.get()),float(self.th2_val.get()),float(self.th3_val.get()),float(self.th4_val.get()),float(self.th5_val.get()),float(self.th6_val.get())]
 	    speeds = [float(self.sp1_val.get()),float(self.sp2_val.get()),float(self.sp3_val.get()),float(self.sp4_val.get()),float(self.sp5_val.get()),float(self.sp6_val.get())]
-	    displayCircularStimuli(directions,colors,thicknesses,speeds,int(self.radDuration_val.get()))
+	    displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,int(self.radDuration_val.get()))
 	else:
 	    print('Please select at least one option!')
 
