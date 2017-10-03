@@ -3,6 +3,7 @@ import numpy as np
 import time
 import subprocess, sys
 
+# change the logger path as required
 logging.console.setLevel(logging.CRITICAL)
 log = logging.LogFile("stimuli_timing.log", level=logging.CRITICAL,filemode='w')
 
@@ -65,17 +66,22 @@ rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
 log_file=[]
 timer=core.Clock()
 
-def startCamera():
+def startCamera(nframes):
 	'''
 	Link to (and initiate) capture from the camera and pause for a few (3) seconds before
 	displaying the stimuli on the screen
 	'''
-	#args = ("/usr/src/flycapture/bin/SaveImageToAviEx",str(capture_duration))
+	# the duration is in frames -- need to convert it into seconds based on the screen's
+	# refresh rate
+	nSec = nframes/60.0 # assuming 60 Hz emprically validated
+	nSec = nSec + 5
+
+	#args = ("/usr/src/flycapture/bin/SaveImageToAviEx",str(nSec))
 	#p = subprocess.Popen(args)
 	#time.sleep(3)
 
 def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,duration):
-	startCamera()
+	startCamera(duration)
 	ops = []
 	for d in directions:
 		if d == 'Clockwise':
@@ -184,16 +190,17 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 	mywin.close()
 
 def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
-	startCamera()
+	startCamera(t1+t2)
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
-	startCamera()
+	startCamera(t1+t2)
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayNoStimuli(duration):
+	startCamera(duration)
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
 	mywin.winHandle.activate()
