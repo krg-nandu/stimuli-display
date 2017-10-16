@@ -55,13 +55,17 @@ direction="-"
 scalingFactor = 70.0
 wheel  = np.asarray([[-1,0],[0,0],[-1/np.sqrt(2),1/np.sqrt(2)],[0,0],[0,1],[0,0],[1/np.sqrt(2),1/np.sqrt(2)],[0,0],[1,0],[0,0],[1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[0,-1],[0,0],[-1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[-1,0]])
 
-mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=True,screen=1)
-plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
-white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+#mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=True,screen=1)
+#plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
+#white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+
+mywin=None
+plate=None
+white=None
 
 #background=visual.Circle(win=mywin,radius=1, fillColor='red')
 
-rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
+#rad = visual.RadialStim(win=mywin,mask='circle',size=(20,20),pos=[20,20])
 
 log_file=[]
 timer=core.Clock()
@@ -81,6 +85,11 @@ def startCamera(nframes):
 	time.sleep(3)
 
 def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,duration):
+	global mywin, plate, white
+	mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=False,screen=1,color='white')
+	plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
+	white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+
 	ops = []
 	for d in directions:
 		if d == 'Clockwise':
@@ -124,7 +133,7 @@ def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,dur
 		if event.waitKeys(0.5)==["escape"]:
 			break	
 	event.clearEvents()
-	#startCamera(duration)
+	startCamera(duration)
 	clock = core.Clock()
 	for frameN in range(duration):
 		white.draw()
@@ -203,16 +212,33 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 	mywin.close()
 
 def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
+	global mywin,plate,white
+
+	mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=False,screen=1,color='white')
+	plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
+	white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+
 	#startCamera(t1+t2)
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
+	global mywin, plate,white
+	mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=False,screen=1,color='white')
+	plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
+	white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+
 	#startCamera(t1+t2)
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayNoStimuli(duration):
+	global mywin, plate, white
+
+	mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=False,screen=1,color='white')
+	plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
+	white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
+
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
 	mywin.winHandle.activate()
