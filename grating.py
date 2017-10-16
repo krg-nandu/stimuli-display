@@ -52,7 +52,7 @@ duration_two=60
 direction="-"
 ###
 
-scalingFactor = 50.0
+scalingFactor = 70.0
 wheel  = np.asarray([[-1,0],[0,0],[-1/np.sqrt(2),1/np.sqrt(2)],[0,0],[0,1],[0,0],[1/np.sqrt(2),1/np.sqrt(2)],[0,0],[1,0],[0,0],[1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[0,-1],[0,0],[-1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[-1,0]])
 
 mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=True,screen=1)
@@ -88,29 +88,29 @@ def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,dur
 		else:
 			ops.append('-')	
 
-	shape1 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[0], lineColor=colors_wheel[0], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape1 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[0], lineColor=colors_wheel[0], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.4,height_plate/8.2), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape1b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[0],pos=(-width_plate/6.0,height_plate/8))
+	shape1b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[0],pos=(-width_plate/6.4,height_plate/8.2))
 
-	shape2 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[1], lineColor=colors_wheel[1], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape2 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[1], lineColor=colors_wheel[1], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,height_plate/8.2), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape2b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[1],pos=(0,height_plate/8))
+	shape2b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[1],pos=(0,height_plate/8.2))
 
-	shape3 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[2], lineColor=colors_wheel[2], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape3 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[2], lineColor=colors_wheel[2], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.4,height_plate/8.2), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape3b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[2],pos=(width_plate/6.0,height_plate/8))
+	shape3b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[2],pos=(width_plate/6.4,height_plate/8.2))
 
-	shape4 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[3], lineColor=colors_wheel[3], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape4 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[3], lineColor=colors_wheel[3], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(-width_plate/6.4,-height_plate/8.2), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape4b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[3],pos=(-width_plate/6.0,-height_plate/8))
+	shape4b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[3],pos=(-width_plate/6.4,-height_plate/8.2))
 
-	shape5 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[4], lineColor=colors_wheel[4], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape5 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[4], lineColor=colors_wheel[4], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(0,-height_plate/8.2), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape5b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[4],pos=(0,-height_plate/8))
+	shape5b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[4],pos=(0,-height_plate/8.2))
 
-	shape6 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[5], lineColor=colors_wheel[5], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.0,-height_plate/8), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
+	shape6 = visual.ShapeStim(mywin,units='', lineWidth=thicknesses[5], lineColor=colors_wheel[5], lineColorSpace='rgb', fillColor='red', fillColorSpace='rgb', vertices=np.multiply(wheel,scalingFactor), windingRule=None, closeShape=True, pos=(width_plate/6.4,-height_plate/8.2), size=1, ori=0.0, opacity=1.0, contrast=1.0, depth=0, interpolate=True, name=None, autoLog=None, autoDraw=False)
 
-	shape6b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[5],pos=(width_plate/6.0,-height_plate/8))
+	shape6b = visual.Circle(mywin,radius=scalingFactor,fillColor=colors[5],pos=(width_plate/6.4,-height_plate/8.2))
 
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
