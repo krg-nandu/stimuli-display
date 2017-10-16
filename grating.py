@@ -5,7 +5,7 @@ import subprocess, sys
 
 # change the logger path as required
 logging.console.setLevel(logging.CRITICAL)
-log = logging.LogFile("stimuli_timing.log", level=logging.CRITICAL,filemode='w')
+log = logging.LogFile("/media/zfishlab/Data/FlyCapture/stimuli_timing.log", level=logging.CRITICAL,filemode='w')
 
 globalClock = core.MonotonicClock(start_time=0)
 logging.setDefaultClock(globalClock)
@@ -25,8 +25,8 @@ def write_file(output_name,list_name):
 
 # These are the dimensions of the plate.
 # DO NOT CHANGE!
-width_plate = 620*1.52
-height_plate = 400*1.57
+width_plate = 620*1.56
+height_plate = 400*1.61
 
 grating_width = 380*0.85
 grating_height = 568*0.85
@@ -41,7 +41,7 @@ Request for the duration of the capture from the user
 capture_duration=15
 if (len(sys.argv) == 2):
 	capture_duration=(int)(sys.argv[1])
-print('Capture requested for %d seconds'%(capture_duration))
+#print('Capture requested for %d seconds'%(capture_duration))
 
 ### 
 speed=0.01
@@ -56,7 +56,7 @@ scalingFactor = 50.0
 wheel  = np.asarray([[-1,0],[0,0],[-1/np.sqrt(2),1/np.sqrt(2)],[0,0],[0,1],[0,0],[1/np.sqrt(2),1/np.sqrt(2)],[0,0],[1,0],[0,0],[1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[0,-1],[0,0],[-1/np.sqrt(2),-1/np.sqrt(2)],[0,0],[-1,0]])
 
 mywin=visual.Window([1280,1024],monitor="Dell Inc. 17",units="pix",fullscr=True,screen=1)
-plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255")
+plate=visual.Rect(win=mywin,size=(width_plate,height_plate),lineColor=[0,0,0],lineColorSpace="rgb255",lineWidth=4)
 white=visual.ImageStim(win=mywin,image="Solid_white.png",size=(1280,1024),pos=[0,0])
 
 #background=visual.Circle(win=mywin,radius=1, fillColor='red')
@@ -74,14 +74,13 @@ def startCamera(nframes):
 	# the duration is in frames -- need to convert it into seconds based on the screen's
 	# refresh rate
 	nSec = nframes/60.0 # assuming 60 Hz emprically validated
-	nSec = nSec + 5
+	nSec = nSec + 10
 
-	#args = ("/usr/src/flycapture/bin/SaveImageToAviEx",str(nSec))
-	#p = subprocess.Popen(args)
-	#time.sleep(3)
+	args = ("/usr/src/flycapture/bin/SaveImageToAviEx",str(nSec))
+	p = subprocess.Popen(args)
+	time.sleep(3)
 
 def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,duration):
-	startCamera(duration)
 	ops = []
 	for d in directions:
 		if d == 'Clockwise':
@@ -125,7 +124,7 @@ def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,dur
 		if event.waitKeys(0.5)==["escape"]:
 			break	
 	event.clearEvents()
-
+	#startCamera(duration)
 	clock = core.Clock()
 	for frameN in range(duration):
 		white.draw()
@@ -158,6 +157,12 @@ def displayCircularStimuli(directions,colors,colors_wheel,thicknesses,speeds,dur
 	
 		mywin.logOnFlip(level=logging.CRITICAL, msg='sent on actual flip')
 		mywin.flip()
+
+	for frameN in range(300):
+		white.draw()
+		plate.draw()
+		mywin.flip()
+
 	mywin.close()
 	core.quit()
 
@@ -175,6 +180,8 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 			break	
 	event.clearEvents()
 
+	startCamera(t1+t2)
+
 	t=0
 	while (t < (t1+t2)):
 		white.draw()
@@ -187,20 +194,25 @@ def displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2):
 			mywin.logOnFlip(level=logging.CRITICAL, msg='sent on actual flip')
 		mywin.flip()
 		t=t+1
+
+	for frameN in range(300):
+		white.draw()
+		plate.draw()
+		mywin.flip()
+
 	mywin.close()
 
 def displayHorizontalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
-	startCamera(t1+t2)
+	#startCamera(t1+t2)
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_width,grating_height),ori=270,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayVerticalGrating(t1,speed1,dir1,t2,speed2,dir2,thickness):
-	startCamera(t1+t2)
+	#startCamera(t1+t2)
 	grating=visual.GratingStim(win=mywin,mask=None,size=(grating_height,grating_width),ori=0,color=[80,80,80],colorSpace="rgb255",pos=[0,0],sf=(1.0/pix_per_cycle)*thickness)
 	displayGrating(grating,t1,speed1,dir1,t2,speed2,dir2)
 
 def displayNoStimuli(duration):
-	startCamera(duration)
 	mywin.winHandle.maximize()
 	mywin.winHandle.set_fullscreen(True) 
 	mywin.winHandle.activate()
@@ -213,7 +225,7 @@ def displayNoStimuli(duration):
 		if event.waitKeys(0.5)==["escape"]:
 			break	
 	event.clearEvents()
-
+	startCamera(duration)
 	t=0
 	while (t < duration):
 		white.draw()
