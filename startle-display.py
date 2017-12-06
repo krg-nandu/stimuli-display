@@ -58,9 +58,9 @@ class Application(Frame):
         '''
         get all the variables on the panel and call the function to display the stimuli
         '''
-        t1 = float(self.duration1_val.get())
-        t2 = float(self.duration2_val.get())
-        t3 = float(self.duration3_val.get())
+        t1 = int(self.duration1_val.get())
+        t2 = int(self.duration2_val.get())
+        t3 = int(self.duration3_val.get())
         sp = float(self.speed1_val.get())
         color = self.color_val.get()
         startleDisplayProtocol(t1,t2,t3,sp,color)
