@@ -137,9 +137,9 @@ def startleDisplayProtocol(t1, t2, t3, speed, color):
         shape5.draw()
         shape6.draw()
 
-        if (shape1.pos[0]-radDisc) <= (initpos[0]-scalingFactor):
+        if (shape1.pos[0]-radDisc) <= (initpos[0]-scalingFactor/1.4142):
             ops='+'
-        elif (shape1.pos[0]+radDisc) >= (initpos[0]+scalingFactor):
+        elif (shape1.pos[0]+radDisc) >= (initpos[0]+scalingFactor/1.4142):
             ops = '-'
         shape1.setPos([speed,0], operation=ops)
         shape2.setPos([speed, 0], operation=ops)
