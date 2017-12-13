@@ -72,13 +72,13 @@ def startleDisplayProtocol(t1, t2, t3, speed, color):
     mywin.winHandle.set_fullscreen(True)
     mywin.winHandle.activate()
 
-    radDisc = scalingFactor/4.
-    shape1 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(-width_plate / 6.4, height_plate / 8.2))
-    shape2 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(0, height_plate / 8.2))
-    shape3 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(width_plate / 6.4, height_plate / 8.2))
-    shape4 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(-width_plate / 6.4, -height_plate / 8.2))
-    shape5 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(0, -height_plate / 8.2))
-    shape6 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(width_plate / 6.4, -height_plate / 8.2))
+    radDisc = scalingFactor/2.5
+    shape1 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(-width_plate / 6.4, (scalingFactor/2.) + height_plate / 8.2))
+    shape2 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(0, (scalingFactor/2.) + height_plate / 8.2))
+    shape3 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(width_plate / 6.4, (scalingFactor/2.) +height_plate / 8.2))
+    shape4 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(-width_plate / 6.4, (scalingFactor/2.) + -height_plate / 8.2))
+    shape5 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(0, (scalingFactor/2.) + -height_plate / 8.2))
+    shape6 = visual.Circle(mywin, radius=radDisc, fillColor=color,pos=(width_plate / 6.4, (scalingFactor/2.) + -height_plate / 8.2))
 
     shape1b = visual.Circle(mywin, radius=scalingFactor, lineWidth=2., lineColor='black',pos=(-width_plate / 6.4, height_plate / 8.2))
     shape2b = visual.Circle(mywin, radius=scalingFactor, lineWidth=2., lineColor='black',pos=(0, height_plate / 8.2))
